@@ -22,12 +22,12 @@ if (isset($_POST['login-submit']))
 			{	
 				if($v->password == $password)
 				{
-					$_SESSION['username'] = $username;
+					$_SESSION['username'] = $username; //Garder la session active à travers le 												//header
 					header('Location: chat.html'); //Si c'est bon on va dans la page de chat	
 				}
 				else
 				{
-					header('Location: erreurs/erreur1.html'); //erreur1 pour login mais mauvais mdp
+					header('Location: erreurs/erreur1.html'); 	//erreur1 pour login mais 															//mauvais mdp
 				}
 			}
 			else
