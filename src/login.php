@@ -54,7 +54,7 @@ Function connect($login,$pass)
 	else
 	{
 		echo 'Bienvenue sur le site';
-		$filename='./../db/online.txt'
+		$filename='./../db/online.txt';
 		$file=fopen($filename,'r');
 		$filecontent=fread($file,filesize($filename));
 		fclose($file);
@@ -66,7 +66,7 @@ Function connect($login,$pass)
 
 Function disconnect($username)
 {
-	$filename='./../db/online.txt'
+	$filename='./../db/online.txt';
 	$file=fopen($filename,'r');
 	$filecontents=fread($file,filesize($filename));
 	fclose($file);
@@ -106,9 +106,9 @@ Function logon($username,$password,$confirmpass)
 	}
 }
 
-Function IsConnected ()
+/*Function IsConnected ()
 {
-	$filename='./../db/online.txt'
+	$filename='./../db/online.txt';
 	$file=fopen($filename,'r');
 	$filecontents=fread($file,filesize($filename));
 	fclose($file);
@@ -122,6 +122,6 @@ Function IsConnected ()
 	}
 	return $array;
 }
-
+*/
 	
 ?>

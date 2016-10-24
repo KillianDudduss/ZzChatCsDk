@@ -1,9 +1,9 @@
-<php?
+<?php
 
-include("/src/login.php");
+include("src/login.php");
 
 // First start a session.
-session_start();
+//session_start();
 
 // Check to see if this run of the script was caused by our login submit button being clicked.
 if (isset($_POST['login-submit']))
@@ -16,7 +16,6 @@ if (isset($_POST['login-submit']))
 		{
 			connect($v->username,$v->password);
 		}
-	
-
-
+	}
+}
 ?>
