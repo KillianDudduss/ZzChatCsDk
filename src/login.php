@@ -21,7 +21,7 @@ Function matchlog($login,$pass)
 				{
 					$_SESSION['login'] = $login; //Garder la session active à travers le header
 					$_SESSION['nb_erreur'] = 0;
-					header('Location: /src/corpschat.html'); //Si c'est bon on va dans la page de chat	
+					header('Location: src/corpschat.html'); //Si c'est bon on va dans la page de chat	
 				}
 				else
 				{
