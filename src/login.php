@@ -1,5 +1,6 @@
 <?php
 
+
 Function matchlog($login,$pass)
 {
 	$auth=false;
@@ -14,10 +15,30 @@ Function matchlog($login,$pass)
 		foreach ($lines as $line) 
 		{
 			list($username,$password)=explode(';;', $line);
-			if (($username==$login)&&($password==$pass))
+			if($login == $username)
+			{	
+				if($pass == $password)
+				{
+					$_SESSION['login'] = $login; //Garder la session active à travers le header
+					$_SESSION['nb_erreur'] = 0;
+					header('Location: /src/corpschat.html'); //Si c'est bon on va dans la page de chat	
+				}
+				else
+				{
+					$_SESSION['nb_erreur'] = $_SESSION['nb_erreur']+1;
+					if($_SESSION['nb_erreur']>=3)
+					{
+						header('Location: erreurs/erreur3.html');
+					}
+					else
+					{
+						header('Location: erreurs/erreur1.html'); 	//erreur1 pour login mais mauvais mdp
+					}
+				}
+			}
+			else
 			{
-				$auth=true;
-				break;
+				header('Location: erreurs/erreur2.html'); //erreur2 pour mauvais login
 			}
 		}
 	}
