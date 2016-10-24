@@ -1,4 +1,24 @@
- <!DOCTYPE html>
+<php?
+
+include("src/login.php");
+
+// First start a session.
+session_start();
+
+// Check to see if this run of the script was caused by our login submit button being clicked.
+if (isset($_POST['login-submit']))
+{
+  $username=$_POST['username'];
+  $password=$_POST['password'];
+  // Also check that our usename and password were passed along. If not, jump
+  // down to our error message about providing both pieces of information.
+  if (isset($_POST['username']) && isset($_POST['password'])) 
+  {
+    connect($username,$password);
+  }
+}
+  ?>
+<!DOCTYPE html>
  <html>
  	<head>
  		<title> Zz Chat </title>
@@ -45,7 +65,7 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action="http://lololo" method="post" role="form" style="display: block;">
+                <form id="login-form" action="src/login.php" method="post" role="form" style="display: block;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
                   </div>
@@ -73,7 +93,7 @@
                     </div>
                   </div>
                 </form>
-                <form id="register-form" action="http://lolo" method="post" role="form" style="display: none;">
+                <form id="register-form" action="src/logon.php" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
