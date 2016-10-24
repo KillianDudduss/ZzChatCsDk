@@ -123,5 +123,29 @@ Function IsConnected ()
 	return $array;
 }
 
+Fonction UserExistenceInFile ($username, $json.data)
+{
+	foreach($json.data as $v)
+	{
+		if($v->login == $username)
+		{
+			return true;
+		}
+	}	
+	return false;
+}
+
+Function PwdMatching ($password, $json.data)
+{
+	foreach($json.data as $v)
+	{
+		if($v->password == $password)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 	
 ?>
