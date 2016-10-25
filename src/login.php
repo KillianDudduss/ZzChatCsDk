@@ -1,5 +1,24 @@
 <?php
 
+$login=$_POST['username'];
+$pass=$_POST['password'];
+
+matchlog($login,$pass);
+if (!$auth)
+{
+	echo 'Le mot de passe ou le login est incorrect';
+}
+else
+{
+	echo 'Bienvenue sur le site';
+	$filename='./../db/online.txt'
+	$file=fopen($filename,'r');
+	$filecontent=fread($file,filesize($filename));
+	fclose($file);
+	$file=fopen($filename,'w');
+	fwrite($file, $filecontent+$login+'/n');
+	fclose($file);
+}
 
 Function matchlog($login,$pass)
 {
@@ -44,84 +63,4 @@ Function matchlog($login,$pass)
 	}
 }
 
-Function connect($login,$pass)
-{
-	matchlog($login,$pass);
-	if (!$auth)
-	{
-		echo 'Le mot de passe ou le login est incorrect';
-	}
-	else
-	{
-		echo 'Bienvenue sur le site';
-		$filename='./../db/online.txt';
-		$file=fopen($filename,'r');
-		$filecontent=fread($file,filesize($filename));
-		fclose($file);
-		$file=fopen($filename,'w');
-		fwrite($file, $filecontent+$login+'/n');
-		fclose($file);
-	}
-}
 
-Function disconnect($username)
-{
-	$filename='./../db/online.txt';
-	$file=fopen($filename,'r');
-	$filecontents=fread($file,filesize($filename));
-	fclose($file);
-	$file=fopen($filename,'w');
-	$lines=explode("/n", $filecontents);
-	foreach ($lines as $line) 
-	{
-		if($line!=$username)
-		{
-			fwrite($file, $line+'/n');
-		}
-	}
-	fclose($file);
-	$auth=false;
-}
-
-Function logon($username,$password,$confirmpass)
-{
-	if (isset($username)&&isset($password)&&(isser($confirmpass)))
-	{
-		if ($password==$confirmpass)
-		{
-			$filename='./../db/users.txt';
-			$file=fopen($filename, 'r');
-			$filecontents = fread($file, filesize($filename));
-			$fclose($file);
-			$file=fopen($filename, 'w');
-			fwrite($file,$filecontents);
-			fwrite($file,$username+";;"+$password+"/n");
-			fclose($file);
-			connect($username,$password);
-		}
-		else
-		{
-			header('Location: index.html/#subscribe');
-		}
-	}
-}
-
-/*Function IsConnected ()
-{
-	$filename='./../db/online.txt';
-	$file=fopen($filename,'r');
-	$filecontents=fread($file,filesize($filename));
-	fclose($file);
-	
-	$array = new array ();
-	
-	$lines=explode("/n", $filecontents);
-	foreach ($lines as $line) 
-	{
-		$array += $line;
-	}
-	return $array;
-}
-*/
-	
-?>
