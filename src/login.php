@@ -62,5 +62,3 @@ Function matchlog($login,$pass)
 		}
 	}
 }
-
-?>
