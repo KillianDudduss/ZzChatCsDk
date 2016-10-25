@@ -17,11 +17,11 @@ if (isset($username)&&isset($password)&&(isset($confirmpass)))
 		fwrite($file,$filecontents);
 		fwrite($file,$username+";;"+$password+"/n");
 		fclose($file);
-		connect($username,$password);
+		header('Location: login.php');
 	}
 	else
 	{
-		header('Location: index.html/#subscribe');
+		header('Location: index.php/#subscribe');
 	}
 }
 

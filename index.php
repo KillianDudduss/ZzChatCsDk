@@ -1,6 +1,4 @@
-<php?
-
-include("/src/login.php");
+<?php
 
 // First start a session.
 session_start();
@@ -14,10 +12,10 @@ if (isset($_POST['login-submit']))
   // down to our error message about providing both pieces of information.
   if (isset($_POST['username']) && isset($_POST['password'])) 
   {
-    connect($username,$password);
+    header('Location: login.php');
   }
 }
-  ?>
+?>
 <!DOCTYPE html>
  <html>
  	<head>
@@ -87,13 +85,13 @@ if (isset($_POST['login-submit']))
                     <div class="row">
                       <div class="col-lg-12">
                         <div class="text-center">
-                          <a href="http://lolololol" tabindex="5" class="forgot-password"> Mot de Passe oublié ?</a>
+                          <a href="src/forgotpass.php" tabindex="5" class="forgot-password"> Mot de Passe oublié ?</a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </form>
-                <form id="register-form" action="http://lolo" method="post" role="form" style="display: none;">
+                <form id="register-form" action="src/logon.php" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -120,7 +118,5 @@ if (isset($_POST['login-submit']))
         </div>
       </div>
     </div>
-  </div>
-</div>
- 	</body>
- </html>
+  </body>
+</html>
