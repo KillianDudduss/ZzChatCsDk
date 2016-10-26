@@ -1,23 +1,23 @@
 <?php
 
-$login=$_POST['username'];
-$pass=$_POST['password'];
-
-matchlog($login,$pass);
-if (!$auth)
+Function login($login,$pass)
 {
-	echo 'Le mot de passe ou le login est incorrect';
-}
-else
-{
-	echo 'Bienvenue sur le site';
-	$filename='./../db/online.txt'
-	$file=fopen($filename,'r');
-	$filecontent=fread($file,filesize($filename));
-	fclose($file);
-	$file=fopen($filename,'w');
-	fwrite($file, $filecontent+$login+'/n');
-	fclose($file);
+	$auth=matchlog($login,$pass);
+	if (!$auth)
+	{
+		echo 'Le mot de passe ou le login est incorrect';
+	}
+	else
+	{
+		echo 'Bienvenue sur le site';
+		$filename='./../db/online.txt'
+		$file=fopen($filename,'r');
+		$filecontent=fread($file,filesize($filename));
+		fclose($file);
+		$file=fopen($filename,'w');
+		fwrite($file, $filecontent+$login+'/n');
+		fclose($file);
+	}
 }
 
 Function matchlog($login,$pass)
@@ -61,6 +61,7 @@ Function matchlog($login,$pass)
 			}
 		}
 	}
+	return $auth;
 }
 
 

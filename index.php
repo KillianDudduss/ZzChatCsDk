@@ -1,38 +1,23 @@
 <?php
-<<<<<<< HEAD
 
 include("src/login.php");
-=======
->>>>>>> 72a1b325406169b0b8d5632c1a66d4f3ac50139e
 
 // First start a session.
-//session_start();
+session_start();
 
 // Check to see if this run of the script was caused by our login submit button being clicked.
 if (isset($_POST['login-submit']))
 {
-<<<<<<< HEAD
-	// Also check that our usename and password were passed along. If not, jump
-	// down to our error message about providing both pieces of information.
-	if (isset($_POST['username']) && isset($_POST['password'])) 
-	{
-		foreach($json as $v)
-		{
-			connect($v->username,$v->password);
-		}
-	}
-=======
-  $username=$_POST['username'];
-  $password=$_POST['password'];
   // Also check that our usename and password were passed along. If not, jump
   // down to our error message about providing both pieces of information.
   if (isset($_POST['username']) && isset($_POST['password'])) 
   {
-    header('Location: login.php');
+    login($username,$password);
   }
->>>>>>> 72a1b325406169b0b8d5632c1a66d4f3ac50139e
 }
 ?>
+
+
 <!DOCTYPE html>
  <html>
  	<head>
@@ -80,7 +65,7 @@ if (isset($_POST['login-submit']))
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action="src/login.php" method="post" role="form" style="display: block;">
+                <form id="login-form" action="login($username,$password)" method="post" role="form" style="display: block;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
                   </div>
@@ -108,7 +93,7 @@ if (isset($_POST['login-submit']))
                     </div>
                   </div>
                 </form>
-                <form id="register-form" action="src/logon.php" method="post" role="form" style="display: none;">
+                <form id="register-form" action="logon($username,$password,$confirm-password)" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
