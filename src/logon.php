@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
 Function logon($username,$password,$confirmpass)

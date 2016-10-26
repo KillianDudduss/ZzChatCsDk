@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
 Function logout($username)
@@ -17,6 +18,7 @@ Function logout($username)
 	}
 	fclose($file);
 	session_destroy($username)();
+	header('Location: ../index.php');
 }
 
 ?>

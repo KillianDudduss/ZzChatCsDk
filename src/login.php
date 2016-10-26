@@ -1,4 +1,20 @@
+<!DOCTYPE html>
 <?php
+
+Function connect($_POST)
+{
+	if (isset($_POST['login-submit'])&&isset($_POST['username']&&isset($_POST['password'])
+	{
+		$username=$_POST['username'];
+		$password=$_POST['password'];
+		login($username,$password);
+	}
+	else
+	{
+		header('Location: ../index.php');
+		echo "Saississez un nom d'utilisateur et un mot de passe";
+	}
+}
 
 Function login($login,$pass)
 {
@@ -10,7 +26,7 @@ Function login($login,$pass)
 	else
 	{
 		echo 'Bienvenue sur le site';
-		$filename='./../db/online.txt'
+		$filename='./../db/online.txt';
 		$file=fopen($filename,'r');
 		$filecontent=fread($file,filesize($filename));
 		fclose($file);
@@ -45,7 +61,7 @@ Function matchlog($login,$pass)
 				else
 				{
 					$_SESSION['nb_erreur'] = $_SESSION['nb_erreur']+1;
-					if($_SESSION['nb_erreur']>=3)
+					if($_SESSION['nb_erreur']=>3)
 					{
 						header('Location: erreurs/erreur3.html');
 					}
@@ -64,4 +80,5 @@ Function matchlog($login,$pass)
 	return $auth;
 }
 
+?>
 

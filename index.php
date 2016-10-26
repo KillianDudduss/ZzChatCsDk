@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
 include("src/login.php");
@@ -18,8 +19,8 @@ if (isset($_POST['login-submit']))
 ?>
 
 
-<!DOCTYPE html>
- <html>
+
+<html>
  	<head>
  		<title> Zz Chat </title>
  		<script type="text/javascript" scr="static/js/bootstrap.js"></script>
@@ -65,7 +66,7 @@ if (isset($_POST['login-submit']))
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action="login($username,$password)" method="post" role="form" style="display: block;">
+                <form id="login-form" action="src/login.php" method="post" role="form" style="display: block;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
                   </div>
