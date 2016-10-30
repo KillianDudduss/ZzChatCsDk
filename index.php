@@ -1,40 +1,26 @@
+<!DOCTYPE html>
 <?php
-<<<<<<< HEAD
 
-include("src/login.php");
-=======
->>>>>>> 72a1b325406169b0b8d5632c1a66d4f3ac50139e
+//include("src/login.php");
 
 // First start a session.
-//session_start();
+session_start();
 
 // Check to see if this run of the script was caused by our login submit button being clicked.
 if (isset($_POST['login-submit']))
 {
-<<<<<<< HEAD
-	// Also check that our usename and password were passed along. If not, jump
-	// down to our error message about providing both pieces of information.
-	if (isset($_POST['username']) && isset($_POST['password'])) 
-	{
-		foreach($json as $v)
-		{
-			connect($v->username,$v->password);
-		}
-	}
-=======
-  $username=$_POST['username'];
-  $password=$_POST['password'];
   // Also check that our usename and password were passed along. If not, jump
   // down to our error message about providing both pieces of information.
   if (isset($_POST['username']) && isset($_POST['password'])) 
   {
-    header('Location: login.php');
+    login($username,$password);
   }
->>>>>>> 72a1b325406169b0b8d5632c1a66d4f3ac50139e
 }
 ?>
-<!DOCTYPE html>
- <html>
+
+
+
+<html>
  	<head>
  		<title> Zz Chat </title>
  		<script type="text/javascript" scr="static/js/bootstrap.js"></script>
@@ -55,8 +41,8 @@ if (isset($_POST['login-submit']))
        	</div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#connect">Se connecter</a></li>
-            <li><a href="#subscribe">S'inscrire</a></li>
+            <li  class="active"><a href="#connect">Se connecter</a></li>
+            <li><a href="#logon">S'inscrire</a></li>
             <li><a href="#contact">Contacter</a></li>
           </ul>
         </div>
@@ -69,10 +55,10 @@ if (isset($_POST['login-submit']))
            <div class="panel-heading">
             <div class="row">
               <div class="col-xs-6">
-                <a href="#" class="active" id="login-form-link">Login</a>
+                <a href="#connect" class="active" id="login-form-link">Login</a>
               </div>
               <div class="col-xs-6">
-                <a href="#" id="register-form-link">Register</a>
+                <a href="#subscribe" id="register-form-link">Register</a>
               </div>
             </div>
             <hr>
@@ -108,7 +94,7 @@ if (isset($_POST['login-submit']))
                     </div>
                   </div>
                 </form>
-                <form id="register-form" action="src/logon.php" method="post" role="form" style="display: none;">
+                <form id="register-form" action="logon($username,$password,$confirm-password)" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>

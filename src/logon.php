@@ -1,28 +1,34 @@
+<!DOCTYPE html>
 <?php
 
-include("login.php")
-$username=$_POST['usernameon'];
-$password=$_POST['passwordon'];
-$confirmpass=$_POST['confirmpass'];
-
-if (isset($username)&&isset($password)&&(isset($confirmpass)))
+function logon($username,$password,$confirmpass)
 {
-	if ($password==$confirmpass)
+	if (isset($username)&&isset($password)&&isset($confirmpass))
 	{
-		$filename='./../db/users.txt';
-		$file=fopen($filename, 'r');
-		$filecontents = fread($file, filesize($filename));
-		$fclose($file);
-		$file=fopen($filename, 'w');
-		fwrite($file,$filecontents);
-		fwrite($file,$username+";;"+$password+"/n");
-		fclose($file);
-		header('Location: login.php');
+		if ($password==$confirmpass)
+		{
+			$filename='./../db/users.txt';
+			$file=fopen($filename, 'r');
+			$filecontents = fread($file, filesize($filename));
+			$fclose($file);
+			$file=fopen($filename, 'w');
+			fwrite($file,$filecontents);
+			fwrite($file,$username+";;"+$password+"/n");
+			fclose($file);
+			header('Location: ./login.php');
+		}
+		else
+		{
+			header('Location: ./../index.php');
+		}
 	}
 	else
 	{
-		header('Location: index.php/#subscribe');
+		header('Location: ./../index.php');
 	}
 }
+
+session_start();
+logon($_POST['$username'],$_POST['$password'],$_POST['$confirmpass']);
 
 ?>

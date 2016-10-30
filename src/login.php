@@ -1,33 +1,48 @@
+<!DOCTYPE html>
 <?php
 
-$login=$_POST['username'];
-$pass=$_POST['password'];
-
-matchlog($login,$pass);
-if (!$auth)
+function connect()
 {
-	echo 'Le mot de passe ou le login est incorrect';
-}
-else
-{
-	echo 'Bienvenue sur le site';
-	$filename='./../db/online.txt'
-	$file=fopen($filename,'r');
-	$filecontent=fread($file,filesize($filename));
-	fclose($file);
-	$file=fopen($filename,'w');
-	fwrite($file, $filecontent+$login+'/n');
-	fclose($file);
+	if (isset($_POST['login-submit'])&&isset($_POST['username'])&&isset($_POST['password']))
+	{
+		$username=$_POST['username'];
+		$password=$_POST['password'];
+		login($username,$password);
+	}
+	else
+	{
+		header('Location: ../index.php');
+		echo "Saississez un nom d'utilisateur et un mot de passe";
+	}
 }
 
-Function matchlog($login,$pass)
+function login($login,$pass)
+{
+	$auth=matchlog($login,$pass);
+	if (!$auth)
+	{
+		echo 'Le mot de passe ou le login est incorrect';
+	}
+	else
+	{
+		echo 'Bienvenue sur le site';
+		$filename='./../db/online.txt';
+		$file=fopen($filename,'r');
+		$filecontent=fread($file,filesize($filename));
+		fclose($file);
+		$file=fopen($filename,'w');
+		fwrite($file, $filecontent+$login+'/n');
+		fclose($file);
+	}
+}
+
+function matchlog($login,$pass)
 {
 	$auth=false;
-
-	if (isset($login)&&isset($pass))
+	$filename="./../db/users.txt";
+	if (isset($login)&&isset($pass)&&(filesize($filename)!=0))
 	{
-		$filename='./../db/users.txt';
-		$file=fopen($filename, 'r');
+		$file=fopen($filename, "r");
 		$filecontents = fread($file, filesize($filename));
 		$fclose($file);
 		$lines=explode("/n", $filecontents);
@@ -47,7 +62,7 @@ Function matchlog($login,$pass)
 					$_SESSION['nb_erreur'] = $_SESSION['nb_erreur']+1;
 					if($_SESSION['nb_erreur']>=3)
 					{
-						header('Location: erreurs/erreur3.html');
+						header('Location: erreurs/erreur3.html'); // trop d'erreur 
 					}
 					else
 					{
@@ -61,6 +76,10 @@ Function matchlog($login,$pass)
 			}
 		}
 	}
+	return $auth;
 }
 
+connect();
+
+?>
 
