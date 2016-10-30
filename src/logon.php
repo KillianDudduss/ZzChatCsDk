@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <?php
 
-Function logon($username,$password,$confirmpass)
+function logon($username,$password,$confirmpass)
 {
-	include("login.php")
-
-	if (isset($username)&&isset($password)&&(isset($confirmpass)))
+	if (isset($username)&&isset($password)&&isset($confirmpass))
 	{
 		if ($password==$confirmpass)
 		{
@@ -17,13 +15,20 @@ Function logon($username,$password,$confirmpass)
 			fwrite($file,$filecontents);
 			fwrite($file,$username+";;"+$password+"/n");
 			fclose($file);
-			header('Location: login.php');
+			header('Location: ./login.php');
 		}
 		else
 		{
-			header('Location: index.php/#subscribe');
+			header('Location: ./../index.php');
 		}
 	}
+	else
+	{
+		header('Location: ./../index.php');
+	}
 }
+
+session_start();
+logon($_POST['$username'],$_POST['$password'],$_POST['$confirmpass']);
 
 ?>

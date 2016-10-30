@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
 
-Function connect($_POST)
+function connect()
 {
-	if (isset($_POST['login-submit'])&&isset($_POST['username']&&isset($_POST['password'])
+	if (isset($_POST['login-submit'])&&isset($_POST['username'])&&isset($_POST['password']))
 	{
 		$username=$_POST['username'];
 		$password=$_POST['password'];
@@ -16,7 +16,7 @@ Function connect($_POST)
 	}
 }
 
-Function login($login,$pass)
+function login($login,$pass)
 {
 	$auth=matchlog($login,$pass);
 	if (!$auth)
@@ -36,14 +36,13 @@ Function login($login,$pass)
 	}
 }
 
-Function matchlog($login,$pass)
+function matchlog($login,$pass)
 {
 	$auth=false;
-
-	if (isset($login)&&isset($pass))
+	$filename="./../db/users.txt";
+	if (isset($login)&&isset($pass)&&(filesize($filename)!=0))
 	{
-		$filename='./../db/users.txt';
-		$file=fopen($filename, 'r');
+		$file=fopen($filename, "r");
 		$filecontents = fread($file, filesize($filename));
 		$fclose($file);
 		$lines=explode("/n", $filecontents);
@@ -61,9 +60,9 @@ Function matchlog($login,$pass)
 				else
 				{
 					$_SESSION['nb_erreur'] = $_SESSION['nb_erreur']+1;
-					if($_SESSION['nb_erreur']=>3)
+					if($_SESSION['nb_erreur']>=3)
 					{
-						header('Location: erreurs/erreur3.html');
+						header('Location: erreurs/erreur3.html'); // trop d'erreur 
 					}
 					else
 					{
@@ -79,6 +78,8 @@ Function matchlog($login,$pass)
 	}
 	return $auth;
 }
+
+connect();
 
 ?>
 

@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <?php
 
-Function logout($username)
+function logout($username)
 {
-	$filename='./../db/online.txt'
-	$file=fopen($filename,'r');
-	$filecontents=fread($file,filesize($filename));
-	fclose($file);
-	$file=fopen($filename,'w');
-	$lines=explode("/n", $filecontents);
-	foreach ($lines as $line) 
+	session_start();
+	$filename='./../db/online.txt';
+	if (filesize($filename)!=0)
 	{
-		if($line!=$username)
+		$file=fopen($filename,'r');
+		$filecontents=fread($file,filesize($filename));
+		fclose($file);
+		$file=fopen($filename,'w');
+		$lines=explode("/n", $filecontents);
+		foreach ($lines as $line) 
 		{
-			fwrite($file, $line+'/n');
+			if($line!=$username)
+			{
+				fwrite($file, $line+'/n');
+			}
 		}
+		fclose($file);
 	}
-	fclose($file);
-	session_destroy($username)();
+	session_destroy($username);
+	unset($_SESSION["username"]);
+   	unset($_SESSION["password"]);
 	header('Location: ../index.php');
 }
+
+logout($_POST['$username']);
 
 ?>
