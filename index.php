@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <?php
 
-//include("src/login.php");
-
 // First start a session.
 session_start();
 
-// Check to see if this run of the script was caused by our login submit button being clicked.
-if (isset($_POST['login-submit']))
-{
-  // Also check that our usename and password were passed along. If not, jump
-  // down to our error message about providing both pieces of information.
-  if (isset($_POST['username']) && isset($_POST['password'])) 
-  {
-    login($username,$password);
-  }
-}
 ?>
 
 
@@ -58,7 +46,7 @@ if (isset($_POST['login-submit']))
                 <a href="#connect" class="active" id="login-form-link">Login</a>
               </div>
               <div class="col-xs-6">
-                <a href="#subscribe" id="register-form-link">Register</a>
+                <a href="#logon" id="register-form-link">Register</a>
               </div>
             </div>
             <hr>
@@ -66,7 +54,32 @@ if (isset($_POST['login-submit']))
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action="src/login.php" method="post" role="form" style="display: block;">
+                <form id="login-form-link" action="src/login.php" method="post" role="form" style="display: block;">
+                  <?php
+                  if(!isset($_GET["erreur"])) 
+                  { 
+                    $erreur=-1;
+                  }
+                  else
+                  {
+                    $erreur = $_GET["erreur"];
+                    if ($erreur==-1)
+                    {
+                      echo "Votre login est inconnu, inscrivez vous avant de chatter avec les autres ZZ";
+                    }
+                    else
+                    {
+                      if($erreur>=3)
+                      {
+                        header('Location: src/forgotpass.php'); //nombre d'erreur trop grand redirection sur forgotpass.php
+                      }
+                      else
+                      {
+                        echo "Votre mot de passe est incorrect, il vous reste ".(3-$erreur)." tentatives";  //erreur1 pour login mais mauvais mdp
+                      }
+                    }
+                  }
+                  ?>
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
                   </div>
@@ -93,8 +106,9 @@ if (isset($_POST['login-submit']))
                       </div>
                     </div>
                   </div>
+                  <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
                 </form>
-                <form id="register-form" action="logon($username,$password,$confirm-password)" method="post" role="form" style="display: none;">
+                <form id="register-form-link" action="src/logon.php" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -105,7 +119,7 @@ if (isset($_POST['login-submit']))
                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                   </div>
                   <div class="form-group">
-                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                    <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirm Password">
                   </div>
                   <div class="form-group">
                     <div class="row">

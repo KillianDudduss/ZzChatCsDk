@@ -27,6 +27,7 @@ function logout($username)
 	header('Location: ../index.php');
 }
 
+session_start();
 logout($_POST['$username']);
 
 ?>
