@@ -6,16 +6,31 @@ session_start();
 
 ?>
 
-
-
 <html>
  	<head>
  		<title> Zz Chat </title>
- 		<script type="text/javascript" scr="./static/JS/bootstrap.js"></script>
-    <script type="text/javascript" scr="./static/JS/monjs.js"></script>
+ 		<script type="text/javascript" scr="static/JS/bootstrap.js"></script>
+    <script type="text/javascript" scr="static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="static/CSS/bootstrap.css">
  	</head>
  	<body>
+    <script type="text/javascript">
+    function BasculeElement(_this){
+      var Onglet_li = document.getElementsByTagName('LI');
+      for(var i = 0; i < Onglet_li.length; i++){
+        if(Onglet_li[i].id){
+          if(Onglet_li[i].id == _this.id){
+            Onglet_li[i].className = "active";
+            document.getElementById('#' + Onglet_li[i].id).style.display = 'block';
+          }
+          else{
+            Onglet_li[i].className = "";
+            document.getElementById('#' + Onglet_li[i].id).style.display = 'none';
+          }
+        }
+      }           
+    }
+    </script>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
     		<div class="navbar-header">
@@ -29,9 +44,9 @@ session_start();
        	</div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li id="1" class="active" onclick="BasculeElement(this);"><a href="#connect">Se connecter</a></li>
-            <li id="2" class="" onclick="BasculeElement(this);"><a href="#logon">S'inscrire</a></li>
-            <li id="3" class="" onclick="BasculeElement(this);"><a href="#contact">Contacter</a></li>
+            <li id="login" class="active" onclick="BasculeElement(this);"><a href="#login">Se connecter</a></li>
+            <li id="register" class="" onclick="BasculeElement(this);"><a href="#register">S'inscrire</a></li>
+            <li id="contact" class="" onclick="BasculeElement(this);"><a href="#contact">Contacter</a></li>
           </ul>
         </div>
       </div>
@@ -45,84 +60,97 @@ session_start();
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="#1" action="src/login.php" method="post" role="form" style="display: block;">
-                  <?php
-                  if(!isset($_GET["erreur"])) 
-                  { 
-                    $erreur=-1;
-                  }
-                  else
-                  {
-                    $erreur = $_GET["erreur"];
-                    if ($erreur==-1)
-                    {
-                      echo "Votre login est inconnu, inscrivez vous avant de chatter avec les autres ZZ";
+
+                  <form id="#login" action="src/login.php" method="post" role="form" style="display: block;">
+                    <?php
+                    if(!isset($_GET["erreur"])) 
+                    { 
+                      $erreur=-1;
                     }
                     else
                     {
-                      if($erreur>=3)
+                      $erreur = $_GET["erreur"];
+                      if ($erreur==-1)
                       {
-                        header('Location: src/forgotpass.php'); //nombre d'erreur trop grand redirection sur forgotpass.php
+                        echo "Votre login est inconnu, inscrivez vous avant de chatter avec les autres ZZ";
                       }
                       else
-                      {
-                        echo "Votre mot de passe est incorrect, il vous reste ".(3-$erreur)." tentatives";  //erreur1 pour login mais mauvais mdp
+                     {
+                        if($erreur>=3)
+                        {
+                          header('Location: src/forgotpass.php'); //nombre d'erreur trop grand redirection sur forgotpass.php
+                        }
+                        else
+                        {
+                          echo "Votre mot de passe est incorrect, il vous reste ".(3-$erreur)." tentatives";  //erreur1 pour login mais mauvais mdp
+                        }
                       }
                     }
-                  }
-                  ?>
-                  <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de Passe">
-                  </div>
-                  <div class="form-group text-center">
-                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                    <label for="remember"> Se souvenir de moi</label>
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Se connecter">
-                      </div>
+                    ?>
+                    <div class="form-group">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="text-center">
-                          <a href="src/forgotpass.php" tabindex="5" class="forgot-password"> Mot de Passe oublié ?</a>
+                    <div class="form-group">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de Passe">
+                    </div>
+                    <div class="form-group text-center">
+                      <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                      <label for="remember"> Se souvenir de moi</label>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Se connecter">
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
-                </form>
-                <form id="#2" action="src/logon.php" method="post" role="form" style="display: none;">
-                  <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirm Password">
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="text-center">
+                            <a href="src/forgotpass.php" tabindex="5" class="forgot-password"> Mot de Passe oublié ?</a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-                <div id="#3" style="display: none;">
-                  ici on mettra un affichage d'une feuille de contact ! à coder avec redirection cacher ;)
-                </div>
+                    <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
+                  </form>
+                  <form id="#login" action="src/logon.php" method="post" role="form" style="display: none;">
+                    <div class="form-group">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirm Password">
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="S'enregistrer maintenant">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <form id="#contact" action="src/contact.php" method="post" role="form" style="display: none;">
+                    <div class="form-group">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                          <input type="submit" name="contact-submit" id="contact-submit" tabindex="4" class="form-control btn btn-register" value="S'enregistrer maintenant">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
               </div>
             </div>
           </div>
