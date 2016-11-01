@@ -46,8 +46,8 @@ function matchlog($login,$pass)
 		}
 		foreach ($lines as $line) 
 		{
-			list($username,$password)=explode(";;", $line);
-			if($login == $username)
+			list($username,$password,$email)=explode(";;", $line);
+			if(($login == $username)||($login==$email))
 			{	
 				if ($nb_erreur==-1)
 				{		
@@ -55,7 +55,7 @@ function matchlog($login,$pass)
 				}
 				if($pass == $password)
 				{
-					$_SESSION['login'] = $login; //Garder la session active à travers le header
+					$_SESSION['login'] = $username; //Garder la session active à travers le header
 					header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat	
 				}
 				else
@@ -74,6 +74,7 @@ function matchlog($login,$pass)
 	return $auth;
 }
 
+session_start();
 connect();
 
 ?>

@@ -13,13 +13,13 @@ function logon($username,$password,$confirmpass,$email)
 			fclose($file);
 			$file=fopen($filename, 'w');
 			fwrite($file,$filecontents);
-			fwrite($file,$username+";;"+$password+";;"+$email+"/n");
+			fwrite($file,$username+";;"+$password+";;"+$email+";;/n");
 			fclose($file);
 			header('Location: ./login.php');
 		}
 		else
 		{
-			header('Location: ./../index.php');
+			header('Location: ./../index.php#subscribe');
 		}
 	}
 	else

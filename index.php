@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <?php
 
-//include("src/login.php");
-
 // First start a session.
 session_start();
 
-// Check to see if this run of the script was caused by our login submit button being clicked.
-if (isset($_POST['login-submit']))
-{
-  // Also check that our usename and password were passed along. If not, jump
-  // down to our error message about providing both pieces of information.
-  if (isset($_POST['username']) && isset($_POST['password'])) 
-  {
-    login($username,$password);
-  }
-}
 ?>
 
 
@@ -58,7 +46,7 @@ if (isset($_POST['login-submit']))
                 <a href="#connect" class="active" id="login-form-link">Login</a>
               </div>
               <div class="col-xs-6">
-                <a href="#subscribe" id="register-form-link">Register</a>
+                <a href="#logon" id="register-form-link">Register</a>
               </div>
             </div>
             <hr>
@@ -83,7 +71,7 @@ if (isset($_POST['login-submit']))
                     {
                       if($erreur>=3)
                       {
-                        echo "redirection a faire vers une page avec un delai d'attente"; //nombre d'erreur trop grand 
+                        header('Location: src/forgotpass.php'); //nombre d'erreur trop grand redirection sur forgotpass.php
                       }
                       else
                       {
