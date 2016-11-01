@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <?php
 
+session_start();
+logout($_SESSION['login']);
+
 function logout($username)
 {
-	session_start();
 	$filename='./../db/online.txt';
 	if (filesize($filename)!=0)
 	{
@@ -14,6 +16,7 @@ function logout($username)
 		$lines=explode("/n", $filecontents);
 		foreach ($lines as $line) 
 		{
+			echo $line;
 			if($line!=$username)
 			{
 				fwrite($file, $line+'/n');
@@ -21,13 +24,10 @@ function logout($username)
 		}
 		fclose($file);
 	}
-	session_destroy($username);
-	unset($_SESSION["username"]);
-   	unset($_SESSION["password"]);
+	session_destroy();
+	unset($_SESSION);
 	header('Location: ../index.php');
 }
 
-session_start();
-logout($_POST['$username']);
 
 ?>

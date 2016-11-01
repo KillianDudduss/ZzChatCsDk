@@ -13,7 +13,10 @@ Function IsConnected ()
 	$lines=explode("/n", $filecontents);
 	foreach ($lines as $line) 
 	{
-		$array += $line;
+		if (($line!="0")&&($line!="00"))
+		{
+			$array += $line;
+		}
 	}
 	return $array;
 }

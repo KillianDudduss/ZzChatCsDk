@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
 
+session_start();
+connect();
+
 function connect()
 {
 	if (isset($_POST['login-submit'])&&isset($_POST['username'])&&isset($_POST['password']))
@@ -56,6 +59,14 @@ function matchlog($login,$pass)
 				if($pass == $password)
 				{
 					$_SESSION['login'] = $username; //Garder la session active à travers le header
+					$filename='./../db/online.txt';
+					$file=fopen($filename,'r');
+					$filecontents=fread($file,filesize($filename));
+					fclose($file);
+					$filecontents=$filecontents.$username."/n";
+					$file=fopen($filename,'w');
+					fwrite($file,$filecontents);
+					fclose($file);
 					header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat	
 				}
 				else
@@ -73,9 +84,6 @@ function matchlog($login,$pass)
 	}
 	return $auth;
 }
-
-session_start();
-connect();
 
 ?>
 
