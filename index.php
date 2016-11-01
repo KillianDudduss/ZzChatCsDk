@@ -11,9 +11,9 @@ session_start();
 <html>
  	<head>
  		<title> Zz Chat </title>
- 		<script type="text/javascript" scr="static/js/bootstrap.js"></script>
+ 		<script type="text/javascript" scr="./static/JS/bootstrap.js"></script>
+    <script type="text/javascript" scr="./static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="static/CSS/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="static/CSS/monCSS.css">
  	</head>
  	<body>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -29,9 +29,9 @@ session_start();
        	</div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li  class="active"><a href="#connect">Se connecter</a></li>
-            <li><a href="#logon">S'inscrire</a></li>
-            <li><a href="#contact">Contacter</a></li>
+            <li id="1" class="active" onclick="BasculeElement(this);"><a href="#connect">Se connecter</a></li>
+            <li id="2" class="" onclick="BasculeElement(this);"><a href="#logon">S'inscrire</a></li>
+            <li id="3" class="" onclick="BasculeElement(this);"><a href="#contact">Contacter</a></li>
           </ul>
         </div>
       </div>
@@ -40,21 +40,12 @@ session_start();
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
          <div class="panel panel-login">
-           <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-6">
-                <a href="#connect" class="active" id="login-form-link">Login</a>
-              </div>
-              <div class="col-xs-6">
-                <a href="#logon" id="register-form-link">Register</a>
-              </div>
-            </div>
-            <hr>
+           <hr>
           </div>
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form-link" action="src/login.php" method="post" role="form" style="display: block;">
+                <form id="#1" action="src/login.php" method="post" role="form" style="display: block;">
                   <?php
                   if(!isset($_GET["erreur"])) 
                   { 
@@ -108,7 +99,7 @@ session_start();
                   </div>
                   <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
                 </form>
-                <form id="register-form-link" action="src/logon.php" method="post" role="form" style="display: none;">
+                <form id="#2" action="src/logon.php" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -129,6 +120,9 @@ session_start();
                     </div>
                   </div>
                 </form>
+                <div id="#3" style="display: none;">
+                  ici on mettra un affichage d'une feuille de contact ! à coder avec redirection cacher ;)
+                </div>
               </div>
             </div>
           </div>

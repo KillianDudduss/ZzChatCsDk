@@ -2,6 +2,7 @@
  	<head>
 		<title> Zz Chat </title>
  		<script type="text/javascript" scr="./../static/js/bootstrap.js"></script>
+ 		<script type="text/javascript" scr="static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/monCSS.css">
 	</head>
@@ -15,7 +16,7 @@
 	        			<span class="icon-bar"></span>  
 	         			<span class="icon-bar"></span>
 	       		 	</button>
-	         	  <a class="navbar-brand" href="#">Zz Chat</a>
+	         	  <a class="navbar-brand" href="./../index.php#">Zz Chat</a>
 	       	</div>
 	        <div id="navbar" class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
