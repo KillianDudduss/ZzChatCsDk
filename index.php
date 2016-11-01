@@ -66,7 +66,32 @@ if (isset($_POST['login-submit']))
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action="src/login.php" method="post" role="form" style="display: block;">
+                <form id="login-form-link" action="src/login.php" method="post" role="form" style="display: block;">
+                  <?php
+                  if(!isset($_GET["erreur"])) 
+                  { 
+                    $erreur=-1;
+                  }
+                  else
+                  {
+                    $erreur = $_GET["erreur"];
+                    if ($erreur==-1)
+                    {
+                      echo "Votre login est inconnu, inscrivez vous avant de chatter avec les autres ZZ";
+                    }
+                    else
+                    {
+                      if($erreur>=3)
+                      {
+                        echo "redirection a faire vers une page avec un delai d'attente"; //nombre d'erreur trop grand 
+                      }
+                      else
+                      {
+                        echo "Votre mot de passe est incorrect, il vous reste ".(3-$erreur)." tentatives";  //erreur1 pour login mais mauvais mdp
+                      }
+                    }
+                  }
+                  ?>
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
                   </div>
@@ -93,8 +118,9 @@ if (isset($_POST['login-submit']))
                       </div>
                     </div>
                   </div>
+                  <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
                 </form>
-                <form id="register-form" action="logon($username,$password,$confirm-password)" method="post" role="form" style="display: none;">
+                <form id="register-form-link" action="src/logon.php" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -105,7 +131,7 @@ if (isset($_POST['login-submit']))
                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                   </div>
                   <div class="form-group">
-                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                    <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirm Password">
                   </div>
                   <div class="form-group">
                     <div class="row">
