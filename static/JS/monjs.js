@@ -1,5 +1,4 @@
-<script type="text/javascript">
-    function BasculeElement(_this){
+function BasculeElement(_this){
       var Onglet_li = document.getElementsByTagName('LI');
       for(var i = 0; i < Onglet_li.length; i++){
         if(Onglet_li[i].id){
@@ -13,5 +12,4 @@
           }
         }
       }           
-    }
-</script>
+}
