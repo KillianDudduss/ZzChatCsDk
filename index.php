@@ -45,7 +45,7 @@ session_start();
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li id="login" class="active" onclick="BasculeElement(this);"><a href="#login">Se connecter</a></li>
-            <li id="register" class="" onclick="BasculeElement(this);"><a href="#register">S'inscrire</a></li>
+            <li id="logon" class="" onclick="BasculeElement(this);"><a href="#logon">S'inscrire</a></li>
             <li id="contact" class="" onclick="BasculeElement(this);"><a href="#contact">Contacter</a></li>
           </ul>
         </div>
@@ -115,18 +115,18 @@ session_start();
                     </div>
                     <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
                   </form>
-                  <form id="#login" action="src/logon.php" method="post" role="form" style="display: none;">
+                  <form id="#logon" action="src/logon.php" method="post" role="form" style="display: none;">
                     <div class="form-group">
-                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
                     </div>
                     <div class="form-group">
-                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Adresse E-mail" value="">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de passe">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirm Password">
+                      <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirmer le mot de passe">
                     </div>
                     <div class="form-group">
                       <div class="row">
