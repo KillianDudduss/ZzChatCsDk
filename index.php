@@ -136,21 +136,9 @@ session_start();
                       </div>
                     </div>
                   </form>
-                  <form id="#contact" action="src/contact.php" method="post" role="form" style="display: none;">
-                    <div class="form-group">
-                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                    </div>
-                    <div class="form-group">
-                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                          <input type="submit" name="contact-submit" id="contact-submit" tabindex="4" class="form-control btn btn-register" value="S'enregistrer maintenant">
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                  <div id="#contact" style="display: none;">
+                    contact corps;
+                  </div>
               </div>
             </div>
           </div>
