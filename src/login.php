@@ -6,11 +6,12 @@ connect();
 
 function connect()
 {
-	if (isset($_POST['login-submit'])&&isset($_POST['username'])&&isset($_POST['password']))
+	if (isset($_POST['login-submit'])&&isset($_POST['username'])&&isset($_POST['password'])&&(isset($_POST['erreur'])))
 	{
 		$username=$_POST['username'];
 		$password=$_POST['password'];
-		login($username,$password);
+		$nb_erreur=$_POST['erreur'];
+		login($username,$password,$nb_erreur);
 	}
 	else
 	{
@@ -18,31 +19,15 @@ function connect()
 	}
 }
 
-function login($login,$pass)
+function login($login,$pass,$nb_erreur)
 {
-	$auth=matchlog($login,$pass);
-	if ($auth)
-	{
-		$filename='./../db/online.txt';
-		$file=fopen($filename,'r');
-		$filecontent=fread($file,filesize($filename));
-		fclose($file);
-		$file=fopen($filename,'w');
-		fwrite($file, $filecontent+$login+'/n');
-		fclose($file);
-	}
-}
-
-function matchlog($login,$pass)
-{
-	$auth=false;
 	$filename="./../db/users.txt";
 	if (isset($login)&&isset($pass)&&(filesize($filename)!=0))
 	{
 		$file=fopen($filename, "r");
 		$filecontents = fread($file, filesize($filename));
 		fclose($file);
-		$lines=explode("/n", $filecontents);
+		$lines=explode("\r\n", $filecontents);
 		if (isset($_POST['erreur']))
 		{
 			$nb_erreur = $_POST['erreur'];
@@ -54,35 +39,42 @@ function matchlog($login,$pass)
 			{	
 				if ($nb_erreur==-1)
 				{		
-					$nb_erreur = 0;
+					$nb_erreur=0;
+					echo "mise à zero :".$nb_erreur;
 				}
 				if($pass == $password)
 				{
 					$_SESSION['login'] = $username; //Garder la session active à travers le header
 					$filename='./../db/online.txt';
-					$file=fopen($filename,'r');
-					$filecontents=fread($file,filesize($filename));
-					fclose($file);
-					$filecontents=$filecontents.$username."/n";
+					if(filesize($filename)!=0)
+					{
+						$file=fopen($filename,'r');
+						$filecontents=fread($file,filesize($filename));
+						fclose($file);
+						$filecontents=$filecontents.$username.";;";
+					}
+					else
+					{
+						$filecontents=$username.";;";
+					}
 					$file=fopen($filename,'w');
 					fwrite($file,$filecontents);
 					fclose($file);
-					header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat	
+					echo "redirection bon login";
+					header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat
 				}
 				else
 				{
 					$nb_erreur = $nb_erreur+1;
-					header('Location: ./../index.php?erreur='.$nb_erreur); //message d'erreur
 				}
 			}
-			else
-			{
-				$nb_erreur = -1;
-				header('Location: ./../index.php?erreur='.$nb_erreur); //message d'erreur
-			}
+		}
+		if ($nb_erreur!=0)
+		{
+			echo "nb errreur".$nb_erreur;
+			header('Location: ./../index.php?erreur='.$nb_erreur); //message d'erreur
 		}
 	}
-	return $auth;
 }
 
 ?>
