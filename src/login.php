@@ -69,7 +69,7 @@ function login($login,$pass,$nb_erreur)
 				}
 			}
 		}
-		if ($nb_erreur!=0)
+		if (($nb_erreur!=0)&&($nb_erreur!=$_POST['erreur']))
 		{
 			echo "nb errreur".$nb_erreur;
 			header('Location: ./../index.php?erreur='.$nb_erreur); //message d'erreur
