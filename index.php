@@ -3,34 +3,25 @@
 
 // First start a session.
 session_start();
+if (!isset($_SESSION['username']))
+{
+  $_SESSION['username']="";
+}
+if (!isset($_SESSION['email']))
+{
+  $_SESSION['email']="";
+}
 
 ?>
 
 <html>
  	<head>
  		<title> Zz Chat </title>
- 		<script type="text/javascript" scr="static/JS/bootstrap.js"></script>
-    <script type="text/javascript" scr="static/JS/monjs.js"></script>
+ 		<script type="text/javascript" src="static/JS/bootstrap.js"></script>
+    <script type="text/javascript" src="static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="static/CSS/bootstrap.css">
  	</head>
  	<body>
-    <script type="text/javascript">
-    function BasculeElement(_this){
-      var Onglet_li = document.getElementsByTagName('LI');
-      for(var i = 0; i < Onglet_li.length; i++){
-        if(Onglet_li[i].id){
-          if(Onglet_li[i].id == _this.id){
-            Onglet_li[i].className = "active";
-            document.getElementById('#' + Onglet_li[i].id).style.display = 'block';
-          }
-          else{
-            Onglet_li[i].className = "";
-            document.getElementById('#' + Onglet_li[i].id).style.display = 'none';
-          }
-        }
-      }           
-    }
-    </script>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
     		<div class="navbar-header">
@@ -88,19 +79,19 @@ session_start();
                     }
                     ?>
                     <div class="form-group">
-                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value=""/>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de Passe">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de Passe"/>
                     </div>
                     <div class="form-group text-center">
-                      <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                      <input type="checkbox" tabindex="3" class="" name="remember" id="remember"/>
                       <label for="remember"> Se souvenir de moi</label>
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Se connecter">
+                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Se connecter"/>
                         </div>
                       </div>
                     </div>
@@ -113,25 +104,25 @@ session_start();
                         </div>
                       </div>
                     </div>
-                    <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
+                    <input type="hidden" name="erreur" value="<?php echo $erreur ?>"/>
                   </form>
                   <form id="#logon" action="src/logon.php" method="post" role="form" style="display: none;">
                     <div class="form-group">
-                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value=""/>
                     </div>
                     <div class="form-group">
-                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Adresse E-mail" value="">
+                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Adresse E-mail" value=""/>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de passe">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de passe"/>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirmer le mot de passe">
+                      <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Confirmer le mot de passe"/>
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="S'enregistrer maintenant">
+                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="S'enregistrer maintenant"/>
                         </div>
                       </div>
                     </div>

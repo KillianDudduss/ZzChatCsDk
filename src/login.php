@@ -2,7 +2,6 @@
 <?php
 
 session_start();
-connect();
 
 function connect()
 {
@@ -10,8 +9,18 @@ function connect()
 	{
 		$username=$_POST['username'];
 		$password=$_POST['password'];
-		$nb_erreur=$_POST['erreur'];
-		login($username,$password,$nb_erreur);
+		if ($_SESSION['username']!=$username)
+		{
+			$nb_erreur=-1;
+			$change=1;
+		}
+		else
+		{
+			$nb_erreur=$_POST['erreur'];
+			$change=0;
+		}
+		$_SESSION['username']=$username;
+		login($username,$password,$nb_erreur,$change);
 	}
 	else
 	{
@@ -19,7 +28,7 @@ function connect()
 	}
 }
 
-function login($login,$pass,$nb_erreur)
+function login($login,$pass,$nb_erreur,$change)
 {
 	$filename="./../db/users.txt";
 	if (isset($login)&&isset($pass)&&(filesize($filename)!=0))
@@ -28,10 +37,6 @@ function login($login,$pass,$nb_erreur)
 		$filecontents = fread($file, filesize($filename));
 		fclose($file);
 		$lines=explode("\r\n", $filecontents);
-		if (isset($_POST['erreur']))
-		{
-			$nb_erreur = $_POST['erreur'];
-		}
 		foreach ($lines as $line) 
 		{
 			list($username,$password,$email)=explode(";;", $line);
@@ -40,7 +45,6 @@ function login($login,$pass,$nb_erreur)
 				if ($nb_erreur==-1)
 				{		
 					$nb_erreur=0;
-					echo "mise à zero :".$nb_erreur;
 				}
 				if($pass == $password)
 				{
@@ -60,7 +64,6 @@ function login($login,$pass,$nb_erreur)
 					$file=fopen($filename,'w');
 					fwrite($file,$filecontents);
 					fclose($file);
-					echo "redirection bon login";
 					header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat
 				}
 				else
@@ -69,13 +72,19 @@ function login($login,$pass,$nb_erreur)
 				}
 			}
 		}
-		if (($nb_erreur!=0)&&($nb_erreur!=$_POST['erreur']))
+		echo $nb_erreur."nberreur";
+		if ((($nb_erreur!=0)&&(($nb_erreur!=$_POST['erreur'])||($change==1)))||($nb_erreur==-1))
 		{
-			echo "nb errreur".$nb_erreur;
+			if($nb_erreur==-1)
+			{
+				$_SESSION['username']="";
+			}
 			header('Location: ./../index.php?erreur='.$nb_erreur); //message d'erreur
 		}
 	}
 }
+
+connect();
 
 ?>
 
