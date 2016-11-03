@@ -1,4 +1,4 @@
-<php?
+<?php
 
 Function send-messages()
 {
