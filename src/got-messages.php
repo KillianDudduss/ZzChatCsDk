@@ -10,7 +10,8 @@ Function got-messages($username)
 		$filecontent=fread($file,filesize($filename));
 		fclose($file);
 		$file=fopen($filename,'w');
-		fwrite($file, $filecontent.$message.'/n');
+		$now=date("d M Y, G:i", )
+		fwrite($file, $filecontent.$message.$now.'/r/n');
 		fclose($file);
 	}	
 }
