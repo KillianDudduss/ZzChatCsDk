@@ -20,6 +20,7 @@ if (!isset($_SESSION['email']))
  		<script type="text/javascript" src="static/JS/bootstrap.js"></script>
     <script type="text/javascript" src="static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="static/CSS/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="static/CSS/moncss.css">
  	</head>
  	<body>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
