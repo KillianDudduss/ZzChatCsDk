@@ -2,6 +2,7 @@
 <?php
 
 session_start();
+connect();
 
 function connect()
 {
@@ -39,40 +40,42 @@ function login($login,$pass,$nb_erreur,$change)
 		$lines=explode("\r\n", $filecontents);
 		foreach ($lines as $line) 
 		{
-			list($username,$password,$email)=explode(";;", $line);
-			if(($login == $username)||($login==$email))
-			{	
-				if ($nb_erreur==-1)
-				{		
-					$nb_erreur=0;
-				}
-				if($pass == $password)
-				{
-					$_SESSION['login'] = $username; //Garder la session active à travers le header
-					$filename='./../db/online.txt';
-					if(filesize($filename)!=0)
+			list($username, $password, $email)=explode(";;", $line);
+			if ($line!="")
+			{
+				if(($login == $username)||($login==$email))
+				{	
+					if ($nb_erreur==-1)
+					{		
+						$nb_erreur=0;
+					}
+					if($pass == $password)
 					{
-						$file=fopen($filename,'r');
-						$filecontents=fread($file,filesize($filename));
+						$_SESSION['login'] = $username; //Garder la session active à travers le header
+						$filename='./../db/online.txt';
+						if(filesize($filename)!=0)
+						{
+							$file=fopen($filename,'r');
+							$filecontents=fread($file,filesize($filename));
+							fclose($file);
+							$filecontents=$filecontents.$username.";;";
+						}
+						else
+						{
+							$filecontents=$username.";;";
+						}
+						$file=fopen($filename,'w');
+						fwrite($file,$filecontents);
 						fclose($file);
-						$filecontents=$filecontents.$username.";;";
+						header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat
 					}
 					else
 					{
-						$filecontents=$username.";;";
+						$nb_erreur = $nb_erreur+1;
 					}
-					$file=fopen($filename,'w');
-					fwrite($file,$filecontents);
-					fclose($file);
-					header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat
-				}
-				else
-				{
-					$nb_erreur = $nb_erreur+1;
 				}
 			}
 		}
-		echo $nb_erreur."nberreur";
 		if ((($nb_erreur!=0)&&(($nb_erreur!=$_POST['erreur'])||($change==1)))||($nb_erreur==-1))
 		{
 			if($nb_erreur==-1)
@@ -83,8 +86,6 @@ function login($login,$pass,$nb_erreur,$change)
 		}
 	}
 }
-
-connect();
 
 ?>
 
