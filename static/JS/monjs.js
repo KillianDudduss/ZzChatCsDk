@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-$('input[type=botton]').on('click',function(){
-=======
 function messagesend(_this){
   document.getElementById('message-send')
 }
 
 $('input[type=button]').on('click',function(){
->>>>>>> chat
   var cursorPos=$('#message-send').prop('selectionStart');
   var v = $('#message-send').val(); 
   var textBefore = v.substring(0,cursorPos);
