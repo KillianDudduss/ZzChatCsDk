@@ -1,10 +1,10 @@
 <html>
  	<head>
 		<title> Zz Chat </title>
- 		<script type="text/javascript" scr="./../static/js/bootstrap.js"></script>
- 		<script type="text/javascript" scr="static/JS/monjs.js"></script>
+ 		<script type="text/javascript" src="./../static/js/bootstrap.js"></script>
+ 		<script type="text/javascript" src="static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
-    	<link rel="stylesheet" type="text/css" href="./../static/CSS/monCSS.css">
+    	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -51,74 +51,77 @@
 									$file=fopen($filename, "r");
 									$filecontents = fread($file, filesize($filename));
 									fclose($file);
-									$lines=explode("/n", $filecontents);
+									$lines=explode("\r\n", $filecontents);
 									$erreur=-1;
 									foreach ($lines as $line) 
 									{
-										list($username,$password,$email)=explode(";;", $line);
-										if($_POST['username'] == $username)
-										{	
-											$erreur=0;
-											if(strcmp($_POST['email'],$email)==0)
-											{
-												$mail = $_POST['email']; // Déclaration de l'adresse de destination.
-												if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail))
+										if ($line!="")
+										{
+											list($username,$password,$email)=explode(";;", $line);
+											if(strcmp($_POST['username'],$username)==0)
+											{	
+												$erreur=0;
+												if(strcmp($_POST['email'],$email)==0)
 												{
-													$passage_ligne = "\r\n";
+													$mail = $_POST['email']; // Déclaration de l'adresse de destination.
+													if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail))
+													{
+														$passage_ligne = "\r\n";
+													}
+													else
+													{
+														$passage_ligne = "\n";
+													}
+													//=====Déclaration des messages au format texte et au format HTML.
+													$message_html = 	"<html>
+																			<head>
+																			</head>
+																			<body>
+																				<b>Bonjour</b>, vous avez demandez de récupérer votre mot de passe pour accéder au <i>ZzChat</i>.<br>
+																				Nous avons pris en compte votre demande et nous vous transmettons ici votre mot de passe.
+																				Si vous n'êtes pas celui à l'origine de cette demande, n'hésitez pas à aller changer votre mot de passe sur le site.
+																				<br>
+																				<b> Votre mot de passe est :</b>".$password."<br>
+																				L'equipe ZzChat Vous souhaite une bonne journée.
+																			</body>
+																		</html>";
+													//==========
+													 
+													//=====Création de la boundary
+													$boundary = "-----=".md5(rand());
+													//==========
+													 
+													//=====Définition du sujet.
+													$sujet = "Récuperation du mot de passe ZzChat";
+													//=========
+													 
+													//=====Création du header de l'e-mail.
+													$header = "From: \"WeaponsB\"<zzchat2016@gmail.com>".$passage_ligne;  //motdepasse de l'e-mail : zzchatsimonkillian au cas où ;)
+													$header = "Reply-to: \"WeaponsB\"<".$_POST['email'];
+													$header.= "MIME-Version: 1.0".$passage_ligne;
+													$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+													//==========
+													 
+													//=====Création du message.
+													$message = $passage_ligne."--".$boundary.$passage_ligne;
+													//=====Ajout du message au format HTML
+													$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+													$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+													$message.= $passage_ligne.$message_html.$passage_ligne;
+													//==========
+													$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+													$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+													//==========
+													 
+													//=====Envoi de l'e-mail.
+													mail($mail,$sujet,$message,$header);
+													//==========
+													echo "Votre mot de passe vous à été envoyé par e-Mail.";
 												}
 												else
 												{
-													$passage_ligne = "\n";
+													echo "Votre adresse mail ne correspond pas à votre nom d'utilisateur.";
 												}
-												//=====Déclaration des messages au format texte et au format HTML.
-												$message_html = 	"<html>
-																		<head>
-																		</head>
-																		<body>
-																			<b>Bonjour</b>, vous avez demandez de récupérer votre mot de passe pour accéder au <i>ZzChat</i>.<br>
-																			Nous avons pris en compte votre demande et nous vous transmettons ici votre mot de passe.
-																			Si vous n'êtes pas celui à l'origine de cette demande, n'hésitez pas à aller changer votre mot de passe sur le site.
-																			<br>
-																			<b> Votre mot de passe est :</b>".$password."<br>
-																			L'equipe ZzChat Vous souhaite une bonne journée.
-																		</body>
-																	</html>";
-												//==========
-												 
-												//=====Création de la boundary
-												$boundary = "-----=".md5(rand());
-												//==========
-												 
-												//=====Définition du sujet.
-												$sujet = "Récuperation du mot de passe ZzChat";
-												//=========
-												 
-												//=====Création du header de l'e-mail.
-												$header = "From: \"WeaponsB\"<zzchat2016@gmail.com>".$passage_ligne;  //motdepasse de l'e-mail : zzchatsimonkillian au cas où ;)
-												$header = "Reply-to: \"WeaponsB\"<".$_POST['email'];
-												$header.= "MIME-Version: 1.0".$passage_ligne;
-												$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
-												//==========
-												 
-												//=====Création du message.
-												$message = $passage_ligne."--".$boundary.$passage_ligne;
-												//=====Ajout du message au format HTML
-												$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
-												$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
-												$message.= $passage_ligne.$message_html.$passage_ligne;
-												//==========
-												$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
-												$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
-												//==========
-												 
-												//=====Envoi de l'e-mail.
-												mail($mail,$sujet,$message,$header);
-												//==========
-												echo "Votre mot de passe vous à été envoyé par e-Mail.";
-											}
-											else
-											{
-												echo "Votre adresse mail ne correspond pas à votre nom d'utilisateur.";
 											}
 										}
 									}

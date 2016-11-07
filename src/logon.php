@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <?php
 
+logon($_POST['username'],$_POST['password'],$_POST['confirmpass'],$_POST['email']);
+
 function logon($username,$password,$confirmpass,$email)
 {
+	session_start();
 	if (isset($username)&&isset($password)&&isset($confirmpass)&&isset($email))
 	{
 		if ($password==$confirmpass)
@@ -13,22 +16,23 @@ function logon($username,$password,$confirmpass,$email)
 			fclose($file);
 			$file=fopen($filename, 'w');
 			fwrite($file,$filecontents);
-			fwrite($file,$username+";;"+$password+";;"+$email+";;/n");
+			fwrite($file,$username.";;".$password.";;".$email."\r\n");
 			fclose($file);
-			header('Location: ./login.php');
+			$_SESSION['username']=$username;
+			$_SESSION['password']=$password;
+			header('Location: ./../index.php');
 		}
 		else
 		{
-			header('Location: ./../index.php#subscribe');
+			header('Location: ./../index.php#logon');
 		}
 	}
 	else
 	{
-		header('Location: ./../index.php');
+		header('Location: ./../index.php#logon');
 	}
 }
 
-session_start();
-logon($_POST['$username'],$_POST['$password'],$_POST['$confirmpass'],$_POST['$email']);
+
 
 ?>

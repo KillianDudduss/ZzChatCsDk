@@ -13,13 +13,13 @@ function logout($username)
 		$filecontents=fread($file,filesize($filename));
 		fclose($file);
 		$file=fopen($filename,'w');
-		$lines=explode("/n", $filecontents);
+		$lines=explode(";;", $filecontents);
 		foreach ($lines as $line) 
 		{
 			echo $line;
-			if($line!=$username)
+			if(($line!=$username)&&($line!=""))
 			{
-				fwrite($file, $line+'/n');
+				fwrite($file, $line.";;");
 			}
 		}
 		fclose($file);
