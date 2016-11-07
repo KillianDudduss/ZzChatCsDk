@@ -10,6 +10,7 @@ $('input[type=button]').on('click',function(){
   $('#message-send').val(textBefore+$(this).val()+textAfter);
 })
 
+
 function BasculeElement(_this){
       var Onglet_li = document.getElementsByTagName('LI');
       for(var i = 0; i < Onglet_li.length; i++){

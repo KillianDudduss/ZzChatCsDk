@@ -1,5 +1,6 @@
 <?php
 
+
 function sendmessages()
 {
 	$filename='./../db/messages.txt';
