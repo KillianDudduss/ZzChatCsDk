@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 $('input[type=botton]').on('click',function(){
+=======
+function messagesend(_this){
+  document.getElementById('message-send')
+}
+
+$('input[type=button]').on('click',function(){
+>>>>>>> chat
   var cursorPos=$('#message-send').prop('selectionStart');
   var v = $('#message-send').val(); 
   var textBefore = v.substring(0,cursorPos);
@@ -6,7 +14,10 @@ $('input[type=botton]').on('click',function(){
   $('#message-send').val(textBefore+$(this).val()+textAfter);
 })
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> chat
 function BasculeElement(_this){
       var Onglet_li = document.getElementsByTagName('LI');
       for(var i = 0; i < Onglet_li.length; i++){

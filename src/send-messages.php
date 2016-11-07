@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 function send-messages()
+=======
+function sendmessages()
+>>>>>>> chat
 {
 	$filename='./../db/messages.txt';
 	$file=fopen($filename,'r');
