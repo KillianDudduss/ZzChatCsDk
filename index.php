@@ -108,7 +108,7 @@ if (!isset($_SESSION['email']))
                   </div>
                   <input type="hidden" name="erreur" value="<?php echo $erreur ?>"></input>
                 </form>
-                <form id="#2" action="src/logon.php" method="post" role="form" style="display: none;">
+                <form id="#logon" action="src/logon.php" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -128,7 +128,7 @@ if (!isset($_SESSION['email']))
                       </div>
                     </div>
                   </form>
-                  <div class="form" id="#contact" style="display: none;">
+                  <div class="form-group" id="#contact" style="display: none;">
                     contact corps;
                   </div>
               </div>

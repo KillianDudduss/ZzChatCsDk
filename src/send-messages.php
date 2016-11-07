@@ -2,7 +2,6 @@
 
 
 function sendmessages()
->>>>>>> chat
 {
 	$filename='./../db/messages.txt';
 	$file=fopen($filename,'r');

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-
+session_start();
 logon($_POST['username'],$_POST['password'],$_POST['confirmpass'],$_POST['email']);
 
 function logon($username,$password,$confirmpass,$email)
@@ -32,7 +32,5 @@ function logon($username,$password,$confirmpass,$email)
 		header('Location: ./../index.php#logon');
 	}
 }
-
-
 
 ?>
