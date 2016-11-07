@@ -1,8 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-function send-messages()
-=======
+
 function sendmessages()
 >>>>>>> chat
 {
