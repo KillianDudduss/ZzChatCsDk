@@ -26,7 +26,3 @@ function BasculeElement(_this){
         }
       }           
 }
-
-function scollbas(){
-  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight;
-}

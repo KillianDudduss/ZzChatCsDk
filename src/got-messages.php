@@ -4,7 +4,7 @@ got_messages();
 
 Function got_messages()
 {
-	if ((isset($_POST['message-submit']))&&(isset($_POST['message-send']))&&($_POST['message-send'])!="")
+	if ((isset($_POST['message-submit']))&&(isset($_POST['message-send'])))
 	{
 		$username=$_SESSION['username'];
 		$now=date("d M Y, G:i", time());
@@ -24,8 +24,12 @@ Function got_messages()
 		$file=fopen($filename,'w');
 		fwrite($file, $filecontent.$message."\r\n");
 		fclose($file);
+		echo "message sauvegarder";
 	}
-	header('Location: corpschat.php');
+	else 
+	{
+		echo "pblm";
+	}	
 }
 
 ?>

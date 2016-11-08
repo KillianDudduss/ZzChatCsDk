@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <?php
 
-if (!isset($_SESSION['username']))
-{
-	session_start();
-}
-
 Function IsConnected ()
 {
 	$filename='./../db/online.txt';
-	if (filesize($filename)!=0)
+	if (filesize($filename))
 	{
 		$file=fopen($filename,'r');
 		$filecontents=fread($file,filesize($filename));
 		fclose($file);
+		$array = new array ();
 		$lines=explode(";;", $filecontents);
 		foreach ($lines as $line) 
 		{
-			echo '<div>'.$line."</div>";
+			$array += $line;
 		}
-	}
-	else
-	{
-		echo "Personne n'est connecté!";
+		return $array;
 	}
 }
 

@@ -8,37 +8,19 @@
 	border : double;
 }
 .users{
-	overflow-y: scroll;
-	max-width: 100%;
+	overflow-y: auto;
 	height:390pt;
 	margin-left:2%;
-	overflow-x:none;
-	font-size: 20px;
-	color :green;
 }
 .scroll{
 	margin-left: 2%;
-	overflow-y: scroll;
+	overflow-y: auto;
 	height:350pt;
-	max-width: 100%;
-	overflow-x: none;
 }
 .messagecontainer{
 	margin-top: 30px;
 	margin-bottom: 30px;
+	margin-left:0px;
 	border-color: black;
-	border:double;
-}
-.userdate{
-	color:red;
-	font-size: 12px;
-}
-.message{
-	color :green;
-	max-width: 100%;
-	word-wrap: break-word;
-	background-color: yellow;
-	margin-right: 2%;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	border:double;	
 }
