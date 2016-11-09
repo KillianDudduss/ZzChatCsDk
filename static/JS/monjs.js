@@ -29,30 +29,30 @@ function BasculeElement(_this){
 
 function bold()
 {
-  $('input[type=button]').on('click',function(){
     var cursorPos=$('#message-send').prop('selectionStart');
     var v = $('#message-send').val(); 
     var textBefore = v.substring(0,cursorPos);
     var textAfter = v.substring(cursorPos,v.length);
     $('#message-send').val(textBefore + '[b][/b]' + textAfter); 
+    $('#message-send').focus();
 }
 
 function underline()
 {
-  $('input[type=button]').on('click',function(){
     var cursorPos=$('#message-send').prop('selectionStart');
     var v = $('#message-send').val(); 
     var textBefore = v.substring(0,cursorPos);
     var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[u][/u]' + textAfter); 
+    $('#message-send').val(textBefore + '[u][/u]' + textAfter);
+    $('#message-send').focus();
 }
 
 function italic()
 {
-  $('input[type=button]').on('click',function(){
     var cursorPos=$('#message-send').prop('selectionStart');
     var v = $('#message-send').val(); 
     var textBefore = v.substring(0,cursorPos);
     var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[i][/i]' + textAfter); 
+    $('#message-send').val(textBefore + '[i][/i]' + textAfter);
+    $('#message-send').focus();
 }
