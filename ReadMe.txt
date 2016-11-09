@@ -2,9 +2,9 @@ Simon Chaize
 Dusautiez Killian
 
 Projet F5 ZzChat.
-     ________________________ 
-    < NIKTAGROSSEMERE LA PUTE >
-     ------------------------ 
+     ______________________________
+    < Bienvenue a toi petit fdp <3 >
+     ------------------------------ 
             \
              \                    ##        .            
                             ## ## ##       ==            
@@ -14,3 +14,6 @@ Projet F5 ZzChat.
                  \______ o          __/            
                      \    \        __/             
                         \____\______/
+
+
+PS : fdp = frais de port.
