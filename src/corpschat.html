@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<title> Zz Chat </title>
- 		<script type="text/javascript" src="./../static/js/bootstrap.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ 		<script type="text/javascript" src="./../static/JS/bootstrap.js"></script>
  		<script type="text/javascript" src="./../static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
@@ -56,8 +57,14 @@
 					    			d<br>
 					    			e<br>
 					    	</div>
+
 					    </div>
 				    	<form class="form" id="send-message-form" action="got-messages.php" method="post" role="form">
+				    		<div id="toolbar" >
+				    			<strong><input type="button" onclick="bold()" name="bold" id="bold" value="B" ></strong>
+				    			<i><input type="button" onclick="italic()" name="italic" id="italic" value="I"></i>
+				    			<u><input type="button" onclick="underline()" name="underline" id="underline" value="U"></u>
+					    	</div>
 				    		<div class="form-group">
 				    			<textarea id="message-send" name="message-send" cols="75" rows="3"></textarea>
 				    		</div>
