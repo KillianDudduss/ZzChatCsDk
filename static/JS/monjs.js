@@ -27,6 +27,36 @@ function BasculeElement(_this){
       }           
 }
 
-function scollbas(){
-  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight;
+function scollbas(){ 
+  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
+}
+
+function bold()
+{
+    var cursorPos=$('#message-send').prop('selectionStart');
+    var v = $('#message-send').val(); 
+    var textBefore = v.substring(0,cursorPos);
+    var textAfter = v.substring(cursorPos,v.length);
+    $('#message-send').val(textBefore + '[b][/b]' + textAfter); 
+    $('#message-send').focus();
+}
+
+function underline()
+{
+    var cursorPos=$('#message-send').prop('selectionStart');
+    var v = $('#message-send').val(); 
+    var textBefore = v.substring(0,cursorPos);
+    var textAfter = v.substring(cursorPos,v.length);
+    $('#message-send').val(textBefore + '[u][/u]' + textAfter);
+    $('#message-send').focus();
+}
+
+function italic()
+{
+    var cursorPos=$('#message-send').prop('selectionStart');
+    var v = $('#message-send').val(); 
+    var textBefore = v.substring(0,cursorPos);
+    var textAfter = v.substring(cursorPos,v.length);
+    $('#message-send').val(textBefore + '[i][/i]' + textAfter);
+    $('#message-send').focus();
 }
