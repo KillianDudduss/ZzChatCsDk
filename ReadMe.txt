@@ -1,9 +1,9 @@
-Simon Chaize
+﻿Simon Chaize
 Dusautiez Killian
 
 Projet F5 ZzChat.
      ______________________________
-    < Bienvenue a toi petit fdp <3 >
+         < Bienvenue a toi <3 >
      ------------------------------ 
             \
              \                    ##        .            
@@ -16,7 +16,6 @@ Projet F5 ZzChat.
                         \____\______/
 
 
-PS : fdp = frais de port.
 
 ▒▒▒▄▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▄ 
 ▒▒█▒░░░░▄▄▄▄▀░░░░░▒▀▀▄▄▄▒▒█ 

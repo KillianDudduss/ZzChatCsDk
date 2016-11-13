@@ -24,7 +24,7 @@ Function got_messages()
 		$file=fopen($filename,'w');
 		fwrite($file, $filecontent.$message."\r\n");
 		fclose($file);
-		echo "message sauvegarder";
+		header('Location:corpschat.php');
 	}
 	else 
 	{

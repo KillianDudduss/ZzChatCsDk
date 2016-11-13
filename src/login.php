@@ -67,7 +67,7 @@ function login($login,$pass,$nb_erreur,$change)
 						$file=fopen($filename,'w');
 						fwrite($file,$filecontents);
 						fclose($file);
-						header('Location: corpschat.html'); //Si c'est bon on va dans la page de chat
+						header('Location: corpschat.php'); //Si c'est bon on va dans la page de chat
 					}
 					else
 					{
