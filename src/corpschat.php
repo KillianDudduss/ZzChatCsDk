@@ -79,9 +79,10 @@
 					    </div>
 				    	<form class="form" id="send-message-form" action="got-messages.php" method="post" role="form">
 				    		<div id="toolbar" > 
-                  				<strong><input type="button" onclick="bold();" name="bold" id="bold" value="B" ></strong> 
-                 				<i><input type="button" onclick="italic();" name="italic" id="italic" value="I"></i> 
-                  				<u><input type="button" onclick="underline();" name="underline" id="underline" value="U"></u> 
+						<strong><button id="gras" onclick="balise('bold');">Gras</button></strong>
+						<i><button id="italic" onclick="balise('italic');">I</button></i>
+						<u><button id="souligne" onclick="balise('underline');">U</button></u>
+						<button id="lien" onclick="balise('link');">Lien</button>
                 			</div> 
 				    		<div class="form-group">
 				    			<textarea id="message-send" name="message-send" cols="75" rows="3"></textarea>
