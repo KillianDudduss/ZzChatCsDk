@@ -5,6 +5,7 @@
  		<script type="text/javascript" src="./../static/JS/bootstrap.js"></script>
  		<script type="text/javascript" src="./../static/JS/jquery.js"></script>
  		<script type="text/javascript" src="./../static/JS/monjs.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
 	</head>	
@@ -39,10 +40,38 @@
 				    <div id="#chat" style="display: block;">
 				    	<div class="messagecontainer">
 					    	<div class="scroll" id="scrollmessage">
-					    			<?php
+					    		<?php
 					    				include("./send-messages.php");
 						    			sendmessages();
-						    		?>
+						    	?>
+						    	<script>
+									function auto_load(){
+									        $.ajax({
+									          url: "corpschat.php",
+									          cache: false,
+									          success: function(data){
+									             $("scrollmessage").html(data);
+									          }
+									        });	
+									      }
+										  
+										$(document).ready(function(){
+											auto_load(); //Call auto_load() function when DOM is Ready		
+										});
+
+									//Refrsh all x milliseconds
+									setInterval(auto_load,2000);
+
+								</script>
+								<script>
+									$(document).on("keydown", function(event){
+										if(event.keyCode == 13){
+											<?php
+												echo "dodo";
+											?>
+										}
+									});
+		                        </script>
 					    	</div>
 					    	<script>
 					    		document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight;

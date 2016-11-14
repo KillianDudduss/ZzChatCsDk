@@ -32,7 +32,7 @@
 	           <div class="panel-heading">
 	            <div class="row">
 	              <div class="col-xs-6">
-	                <a href="#forgotpass" class="active" id="login-form-link">ForgotPass</a>
+	                <a href="#forgotpass" class="active" id="login-form-link">Mot de passe oublié</a>
 	              </div>
 	            </div>
 	            <hr>

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (!isset($_SESSION['username'])) 
+{ 
+  session_start(); 
+}
 got_messages();
 
 Function got_messages()
@@ -26,10 +29,6 @@ Function got_messages()
 		fclose($file);
 		header('Location:corpschat.php');
 	}
-	else 
-	{
-		echo "pblm";
-	}	
 }
 
 ?>
