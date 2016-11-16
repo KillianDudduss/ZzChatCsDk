@@ -97,8 +97,8 @@
 
 				scrollbas();
 
-				//setInterval(updateChat, 2000);
-				//setInterval(updateOnline,5000);
+				setInterval(updateChat, 2000);
+				setInterval(updateOnline,5000);
 			});
 
 			function scrollbas(){ 
