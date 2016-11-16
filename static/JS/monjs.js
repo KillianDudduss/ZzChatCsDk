@@ -31,6 +31,27 @@ function scrollbas(){
   document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
 }
 
+function send(){
+    var texte = $("#message-send").val();
+    $("#message-send").val('').focus();
+    $.post("got-messages.php", {text : texte}, function(data){
+        console.log(data);
+    });
+    updateChat();
+}
+
+function updateChat(){
+    $.post("send-messages.php", function(data){
+      $('#scrollmessage').html(data);
+    });
+}
+
+function updateOnline(){
+    $.post("online.php", function(data){
+    $('#online').html(data);
+    });
+}
+
 
 function bold()
 {

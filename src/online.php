@@ -5,8 +5,9 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 } 
- 
-Function IsConnected () 
+IsConnected();
+
+function IsConnected () 
 { 
   $filename='./../db/online.txt'; 
   if (filesize($filename)!=0) 
