@@ -2,10 +2,9 @@
 <html>
 	<head>
 		<title> Zz Chat </title>
- 		<script type="text/javascript" src="./../static/JS/bootstrap.js"></script>
- 		<script type="text/javascript" src="./../static/JS/jquery.js"></script>
- 		<script type="text/javascript" src="./../static/JS/monjs.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 		<script type="text/javascript" src="./../static/JS/bootstrap.js"></script>
+ 		<script type="text/javascript" src="./../static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
 	</head>	
@@ -40,51 +39,17 @@
 				    <div id="#chat" style="display: block;">
 				    	<div class="messagecontainer">
 					    	<div class="scroll" id="scrollmessage">
-					    		<?php
-					    				include("./send-messages.php");
-						    			sendmessages();
-						    	?>
-						    	<script>
-									function auto_load(){
-									        $.ajax({
-									          url: "corpschat.php",
-									          cache: false,
-									          success: function(data){
-									             $("scrollmessage").html(data);
-									          }
-									        });	
-									      }
-										  
-										$(document).ready(function(){
-											auto_load(); //Call auto_load() function when DOM is Ready		
-										});
-
-									//Refrsh all x milliseconds
-									setInterval(auto_load,2000);
-
-								</script>
-								<script>
-									$(document).on("keydown", function(event){
-										if(event.keyCode == 13){
-											<?php
-												echo "dodo";
-											?>
-										}
-									});
-		                        </script>
+					    		
 					    	</div>
-					    	<script>
-					    		document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight;
-					    	</script>
 					    </div>
-				    	<form class="form" id="send-message-form" action="got-messages.php" method="post" role="form">
+				    	<form class="form" id="send-message-form" role="form">
 				    		<div id="toolbar" > 
                   				<strong><input type="button" onclick="bold();" name="bold" id="bold" value="B" ></strong> 
                  				<i><input type="button" onclick="italic();" name="italic" id="italic" value="I"></i> 
                   				<u><input type="button" onclick="underline();" name="underline" id="underline" value="U"></u> 
                 			</div> 
 				    		<div class="form-group">
-				    			<textarea id="message-send" name="message-send" cols="75" rows="3"></textarea>
+				    			<textarea id="message-send" name="message-send" rows="3"></textarea>
 				    		</div>
 				    		<div class="form-group">
 		                      <div class="row">
@@ -106,14 +71,61 @@
 		    	</div>
 		    	<div class="right" >
 		    		<h3><center>Utilisateurs connectés :</center></h3>
-		    		<div class="users">
-			    		<?php
-					    	include("./online.php");
-						    IsConnected();
-						?>
+		    		<div class="users" id="online">
+			    		
 		    		</div>
 		    	</div>
 		    </div>
 		</div>
+		<script>
+
+			$("#message-submit").on("click", function(){
+				send();
+			});
+
+			$(document).on("keydown", function(event){
+				if(event.keyCode == 13){
+					event.preventDefault();
+					send();
+				}
+			});
+
+			$(document).ready(function(){
+				
+				updateChat();
+				updateOnline();
+
+				scrollbas();
+
+				//setInterval(updateChat, 2000);
+				//setInterval(updateOnline,5000);
+			});
+
+			function scrollbas(){ 
+			  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
+			}
+
+			function send(){
+			    var texte = $("#message-send").val();
+			    $("#message-send").val('').focus();
+			    $.post("got-messages.php", {text : texte}, function(data){
+			        console.log(data);
+			    });
+			    updateChat();
+			}
+
+			function updateChat(){
+			    $.post("send-messages.php", function(data){
+			      $('#scrollmessage').html(data);
+			    });
+			}
+
+			function updateOnline(){
+			    $.post("online.php", function(data){
+			    $('#online').html(data);
+			    });
+			}
+
+		</script>
 	</body>
 </html>
