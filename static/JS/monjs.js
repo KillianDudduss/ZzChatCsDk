@@ -53,32 +53,35 @@ function updateOnline(){
 }
 
 
-function bold()
+function balise(bal) 
 {
-    var cursorPos=$('#message-send').prop('selectionStart');
-    var v = $('#message-send').val(); 
-    var textBefore = v.substring(0,cursorPos);
-    var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[b][/b]' + textAfter); 
-    $('#message-send').focus();
-}
-
-function underline()
-{
-    var cursorPos=$('#message-send').prop('selectionStart');
-    var v = $('#message-send').val(); 
-    var textBefore = v.substring(0,cursorPos);
-    var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[u][/u]' + textAfter);
-    $('#message-send').focus();
-}
-
-function italic()
-{
-    var cursorPos=$('#message-send').prop('selectionStart');
-    var v = $('#message-send').val(); 
-    var textBefore = v.substring(0,cursorPos);
-    var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[i][/i]' + textAfter);
-    $('#message-send').focus();
+	switch (bal) 
+	{
+		case 'bold':
+			var balisePrev = '[b]';
+			var balisePost = '[/b]';
+		break;
+		case 'italic':
+			var balisePrev = '[i]';
+			var balisePost = '[/i]';
+		break;
+		case 'underline':
+			var balisePrev = '[u]';
+			var balisePost = '[/u]';
+		break;
+		case 'link':
+			var balisePrev = '<a href="">';
+			var balisePost = '</a>';
+		break;
+		default:
+			var balisePrev = '[error]';
+			var balisePost = '[/error]';
+	}
+	var textbox = document.getElementById('message-send');
+	$('#message-send').focus();
+	var txt = balisePrev + window.getSelection() + balisePost;
+	if(textbox.selectionStart != undefined) 
+	{
+		textbox.value = textbox.value.substring(0, textbox.selectionStart) + txt + textbox.value.substring(textbox.selectionEnd, textbox.value.length);
+	}
 }
