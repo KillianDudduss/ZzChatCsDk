@@ -2,6 +2,17 @@
 Dusautiez Killian
 
 Projet F5 ZzChat.
+
+
+Ce qu'il reste à faire :
+     FR/EN
+     Mdp chiffrés
+     Controler ce qui rentre.
+     Controler ce qu'on rentre.
+     Pas deux personnes avec le meme nom.
+     Toolbar.
+     Commentaires (eng)
+     test unitaires
      ______________________________
          < Bienvenue a toi <3 >
      ------------------------------ 
