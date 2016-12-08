@@ -21,7 +21,7 @@
 	       	</div>
 	        <div id="navbar" class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
-	          	<li class="active"><a href="#forgotpass">Mot de passe oublié</a></li>
+	          	<li class="active"><a href="#forgotpass"><?php echo $TXT_8; ?></a></li>
 	          </ul>
 	        </div>
 	      </div>
@@ -33,7 +33,7 @@
 	           <div class="panel-heading">
 	            <div class="row">
 	              <div class="col-xs-6">
-	                <a href="#forgotpass" class="active" id="login-form-link">Mot de passe oublié</a>
+	                <a href="#forgotpass" class="active" id="login-form-link"><?php echo $TXT_8; ?></a>
 	              </div>
 	            </div>
 	            <hr>
@@ -64,7 +64,7 @@
 												$erreur=0;
 												if(strcmp($_POST['email'],$email)==0)
 												{
-													$mail = $_POST['email']; // Déclaration de l'adresse de destination.
+													$mail = $_POST['email']; // Destination address mail.
 													if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail))
 													{
 														$passage_ligne = "\r\n";
@@ -73,7 +73,7 @@
 													{
 														$passage_ligne = "\n";
 													}
-													//=====Déclaration des messages au format texte et au format HTML.
+													//=====Message in text and html form.
 													$message_html = 	"<html>
 																			<head>
 																			</head>
@@ -88,24 +88,24 @@
 																		</html>";
 													//==========
 													 
-													//=====Création de la boundary
+													//=====boundary creation
 													$boundary = "-----=".md5(rand());
 													//==========
 													 
-													//=====Définition du sujet.
+													//=====Subject.
 													$sujet = "Récuperation du mot de passe ZzChat";
 													//=========
 													 
-													//=====Création du header de l'e-mail.
+													//=====MAil header creation.
 													$header = "From: \"WeaponsB\"<zzchat2016@gmail.com>".$passage_ligne;  //motdepasse de l'e-mail : zzchatsimonkillian au cas où ;)
 													$header = "Reply-to: \"WeaponsB\"<".$_POST['email'];
 													$header.= "MIME-Version: 1.0".$passage_ligne;
 													$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 													//==========
 													 
-													//=====Création du message.
+													//=====Message creation.
 													$message = $passage_ligne."--".$boundary.$passage_ligne;
-													//=====Ajout du message au format HTML
+													//=====Adding the message in HTML
 													$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
 													$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 													$message.= $passage_ligne.$message_html.$passage_ligne;
@@ -114,7 +114,7 @@
 													$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
 													//==========
 													 
-													//=====Envoi de l'e-mail.
+													//====Sending the mail.
 													mail($mail,$sujet,$message,$header);
 													//==========
 													echo "Un EMail de récuperation vous a été envoyé.";
@@ -135,10 +135,10 @@
 	                		?>
 	                	</div>
 		                <div class="form-group">
-		                  <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Identifiant" value="">
+		                  <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder=<?php echo $TXT_4; ?> value="">
 		                </div>
 		                <div class="form-group">
-		                  <input type="text" name="email" id="email" tabindex="2" class="form-control" placeholder="E-mail">
+		                  <input type="text" name="email" id="email" tabindex="2" class="form-control" placeholder=<?php echo $TXT_9; ?>>
 		                </div>
 		                <div class="form-group">
 		                  <div class="row">
