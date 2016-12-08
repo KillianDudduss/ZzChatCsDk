@@ -77,6 +77,7 @@ else
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
+		      
 		//error management
                   <form class="form" id="#login" action="src/login.php" method="post" role="form" style="display: block;">
                     <?php
@@ -95,11 +96,11 @@ else
                      {
                         if($erreur>=3)
                         {
-                          header('Location: src/forgotpass.php'); //nombre d'erreur trop grand redirection sur forgotpass.php
+                          header('Location: src/forgotpass.php'); //too many errors redirect to forgotpass.php
                         }
                         else
                         {
-                          echo "Votre mot de passe est incorrect, il vous reste ".(3-$erreur)." tentatives";  //erreur1 pour login mais mauvais mdp
+                          echo "Votre mot de passe est incorrect, il vous reste ".(3-$erreur)." tentatives";  //erreur1 for good login but bad pass
                         }
                       }
                     }
