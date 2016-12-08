@@ -1,2 +1,3 @@
-simon;;aaa;;sichaizze@gmail.com
-killian;;kkk;;kiki@gmail.com
+simon;;bf9661defa3daecacfde5bde0214c4a439351d4d;;sichaizze@gmail.com
+killian;;5150d2104c8cd974b27fad3f25ec4e8098bb7bbe;;kiki@gmail.com
+david;;aa743a0aaec8f7d7a1f01442503957f4d7a2d634;;david.santiago.pro@gmail.com
