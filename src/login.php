@@ -7,12 +7,16 @@ if (!isset($_SESSION['username']))
 }
 connect();
 
+
+//Function to connect to the chat with the use of the other function login
+
 function connect()
 {
 	if (isset($_POST['login-submit'])&&isset($_POST['username'])&&isset($_POST['password'])&&(isset($_POST['erreur'])))
 	{
 		$username=$_POST['username'];
 		$password=sha1($_POST['password']);
+		//errors management
 		if ($_SESSION['username']!=$username)
 		{
 			$nb_erreur=-1;
@@ -31,6 +35,9 @@ function connect()
 		header('Location: ./../index.php');
 	}
 }
+
+
+//Function to directly log in into the core chat
 
 function login($login,$pass,$nb_erreur,$change)
 {
@@ -54,7 +61,7 @@ function login($login,$pass,$nb_erreur,$change)
 					}
 					if($pass == $password)
 					{
-						$_SESSION['username'] = $username; //Garder la session active à travers le header
+						$_SESSION['username'] = $username; //Keep the seesion load thanks to the header
 						$filename='./../db/online.txt';
 						if(filesize($filename)!=0)
 						{
@@ -82,7 +89,7 @@ function login($login,$pass,$nb_erreur,$change)
 						$file=fopen($filename,'w');
 						fwrite($file,$filecontents);
 						fclose($file);
-						header('Location: corpschat.php'); //Si c'est bon on va dans la page de chat
+						header('Location: corpschat.php'); // If it's correct we go to the chat
 					}
 					else
 					{
@@ -97,7 +104,7 @@ function login($login,$pass,$nb_erreur,$change)
 			{
 				$_SESSION['username']="";
 			}
-			header('Location: ./../index.php?erreur='.$nb_erreur); //message d'erreur
+			header('Location: ./../index.php?erreur='.$nb_erreur); //error message
 		}
 	}
 }
