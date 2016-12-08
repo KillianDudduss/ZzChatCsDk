@@ -12,6 +12,26 @@ if (!isset($_SESSION['email']))
   $_SESSION['email']="";
 }
 
+//Language cookie
+
+if (isset ($_COOKIE['CHOIXlang']) && $_GET['langue'] != 'fr' && $_GET['langue'] != 'en')	
+	{  			
+	$langue = $_COOKIE['CHOIXlang'];
+	}
+// The choice of the cookie is declared by the url
+else if ($_GET['langue'] == 'en' || $_GET['langue'] == 'fr')
+	{ 
+	$langue = $_GET['langue'];
+	set_cookie($langue);
+	}
+
+// If no language is declared then we try to guess it with the default language of the browser
+else 			
+	{
+	$langue = substr($HTTP_SERVER_VARS['HTTP_ACCEPT_LANGUAGE'],0,2);
+	set_cookie($langue);
+	}
+
 ?>
 
 <html>
