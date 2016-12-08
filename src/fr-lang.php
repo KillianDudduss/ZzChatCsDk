@@ -1,5 +1,8 @@
 <?php
 
+////text in french, to swap between french and english 
+
+
 $TXT_1= "Se Connecter"
 $TXT_2= "S'inscrire"
 $TXT_3= "Contacter" 
