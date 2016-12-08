@@ -1,10 +1,24 @@
+<?php
+
+if (!isset($_SESSION['username'])) 
+{ 
+  session_start();
+}
+if(empty($_SESSION['login'])) 
+{
+  // Si inexistante ou nulle, on redirige vers le formulaire de login
+  header('Location: ./../index.php');
+  exit();
+}
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title> Zz Chat </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
- 		<script type="text/javascript" src="./../static/JS/bootstrap.js"></script>
- 		<script type="text/javascript" src="./../static/JS/monjs.js"></script>
+ 		<script type="text/javascript" src="../static/JS/bootstrap.js"></script>
+ 		<script type="text/javascript" src="../static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
 	</head>	
@@ -80,52 +94,23 @@
 		</div>
 		<script>
 
-			$("#message-submit").on("click", function(){
-				send();
-			});
-
 			$(document).on("keydown", function(event){
-				if(event.keyCode == 13){
-					event.preventDefault();
-					send();
-				}
+			  if(event.keyCode == 13){
+			    event.preventDefault();
+			    send();
+			  }
 			});
 
 			$(document).ready(function(){
-				
-				updateChat();
-				updateOnline();
+			  
+			  updateChat();
+			  updateOnline();
 
-				scrollbas();
+			  scrollbas();
 
-				setInterval(updateChat, 2000);
-				setInterval(updateOnline,5000);
+			  setInterval(updateChat, 2000);
+			  setInterval(updateOnline,5000);
 			});
-
-			function scrollbas(){ 
-			  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
-			}
-
-			function send(){
-			    var texte = $("#message-send").val();
-			    $("#message-send").val('').focus();
-			    $.post("got-messages.php", {text : texte}, function(data){
-			        console.log(data);
-			    });
-			    updateChat();
-			}
-
-			function updateChat(){
-			    $.post("send-messages.php", function(data){
-			      $('#scrollmessage').html(data);
-			    });
-			}
-
-			function updateOnline(){
-			    $.post("online.php", function(data){
-			    $('#online').html(data);
-			    });
-			}
 
 		</script>
 	</body>
