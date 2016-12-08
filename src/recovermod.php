@@ -2,6 +2,8 @@
 
 recover($_POST['key'],$_POST['password'],$_POST['confirmpass']);
 
+//function used to recover the password if u have lost it
+
 function recover($key,$password,$confirmpass)
 {
 	$filename="./../db/users.txt";
