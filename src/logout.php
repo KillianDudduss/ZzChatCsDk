@@ -35,7 +35,7 @@ function logout($username)
 	}
 	// Réinitialisation du tableau de session
 	// On le vide intégralement
-	$_SESSION = array();
+	session_unset ();
 	// Destruction de la session
 	session_destroy();
 	// Destruction du tableau de session
