@@ -4,7 +4,7 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 }
-if(empty($_SESSION['login'])) 
+if(empty($_SESSION['username'])) 
 {
   // Si inexistante ou nulle, on redirige vers le formulaire de login
   header('Location: ./../index.php');

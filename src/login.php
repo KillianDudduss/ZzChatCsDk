@@ -67,7 +67,7 @@ function login($login,$pass,$nb_erreur,$change)
 							{
 								if ($line==$username)
 								{
-									$alreadyconnect=1
+									$alreadyconnect=1;
 								}
 							}
 							if ($alreadyconnect==0)
