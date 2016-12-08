@@ -15,9 +15,11 @@ function got_messages()
 	{
 		$username=$_SESSION['username'];
 		$now=date("d M Y, G:i", time());
+		//now value is to add the current time next to the message into the chat 
 		$message_send=$_POST['text'];
 		$message = $username.";;".$message_send.";;".$now;
 		$filename='./../db/messages.txt';
+		//We open the message.txt file to get the whole content of the chat
 		if (filesize($filename)!=0)
 		{
 			$file=fopen($filename,'r');
