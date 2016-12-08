@@ -53,32 +53,40 @@ function updateOnline(){
 }
 
 
-function bold()
+function balise(bal) 
 {
-    var cursorPos=$('#message-send').prop('selectionStart');
-    var v = $('#message-send').val(); 
-    var textBefore = v.substring(0,cursorPos);
-    var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[b][/b]' + textAfter); 
-    $('#message-send').focus();
+	switch (bal) 
+	{
+		case 'bold':
+			var balisePrev = '[b]';
+			var balisePost = '[/b]';
+		break;
+		case 'italic':
+			var balisePrev = '[i]';
+			var balisePost = '[/i]';
+		break;
+		case 'underline':
+			var balisePrev = '[u]';
+			var balisePost = '[/u]';
+		break;
+		case 'link':
+			var balisePrev = '<a href="">';
+			var balisePost = '</a>';
+		break;
+		default:
+			var balisePrev = '[error]';
+			var balisePost = '[/error]';
+	}
+	$('#message-send').focus();
+	var txt = balisePrev + window.getSelection() + balisePost;
+	if(document.getElementById('message-send').selectionStart != undefined) 
+	{
+		document.getElementById('message-send').value = document.getElementById('message-send').value.substring(0, document.getElementById('message-send').selectionStart) + txt + document.getElementById('message-send').value.substring(document.getElementById('message-send').selectionEnd, document.getElementById('message-send').value.length);
+	}
 }
 
-function underline()
-{
-    var cursorPos=$('#message-send').prop('selectionStart');
-    var v = $('#message-send').val(); 
-    var textBefore = v.substring(0,cursorPos);
-    var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[u][/u]' + textAfter);
-    $('#message-send').focus();
-}
 
-function italic()
-{
-    var cursorPos=$('#message-send').prop('selectionStart');
-    var v = $('#message-send').val(); 
-    var textBefore = v.substring(0,cursorPos);
-    var textAfter = v.substring(cursorPos,v.length);
-    $('#message-send').val(textBefore + '[i][/i]' + textAfter);
-    $('#message-send').focus();
-}
+$("#message-submit").on("click", function(){
+        send();
+});
+

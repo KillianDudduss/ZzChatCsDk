@@ -1,10 +1,24 @@
+<?php
+
+if (!isset($_SESSION['username'])) 
+{ 
+  session_start();
+}
+if(empty($_SESSION['login'])) 
+{
+  // Si inexistante ou nulle, on redirige vers le formulaire de login
+  header('Location: ./../index.php');
+  exit();
+}
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title> Zz Chat </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
- 		<script type="text/javascript" src="./../static/JS/bootstrap.js"></script>
- 		<script type="text/javascript" src="./../static/JS/monjs.js"></script>
+ 		<script type="text/javascript" src="../static/JS/bootstrap.js"></script>
+ 		<script type="text/javascript" src="../static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
 	</head>	
@@ -44,9 +58,10 @@
 					    </div>
 				    	<form class="form" id="send-message-form" role="form">
 				    		<div id="toolbar" > 
-                  				<strong><input type="button" onclick="bold();" name="bold" id="bold" value="B" ></strong> 
-                 				<i><input type="button" onclick="italic();" name="italic" id="italic" value="I"></i> 
-                  				<u><input type="button" onclick="underline();" name="underline" id="underline" value="U"></u> 
+						<strong><button id="gras" onclick="balise('bold');">Gras</button></strong>
+						<i><button id="italic" onclick="balise('italic');">I</button></i>
+						<u><button id="souligne" onclick="balise('underline');">U</button></u>
+						<button id="lien" onclick="balise('link');">Lien</button>
                 			</div> 
 				    		<div class="form-group">
 				    			<textarea id="message-send" name="message-send" rows="3"></textarea>
@@ -79,52 +94,23 @@
 		</div>
 		<script>
 
-			$("#message-submit").on("click", function(){
-				send();
-			});
-
 			$(document).on("keydown", function(event){
-				if(event.keyCode == 13){
-					event.preventDefault();
-					send();
-				}
+			  if(event.keyCode == 13){
+			    event.preventDefault();
+			    send();
+			  }
 			});
 
 			$(document).ready(function(){
-				
-				updateChat();
-				updateOnline();
+			  
+			  updateChat();
+			  updateOnline();
 
-				scrollbas();
+			  scrollbas();
 
-				setInterval(updateChat, 2000);
-				setInterval(updateOnline,5000);
+			  setInterval(updateChat, 2000);
+			  setInterval(updateOnline,5000);
 			});
-
-			function scrollbas(){ 
-			  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
-			}
-
-			function send(){
-			    var texte = $("#message-send").val();
-			    $("#message-send").val('').focus();
-			    $.post("got-messages.php", {text : texte}, function(data){
-			        console.log(data);
-			    });
-			    updateChat();
-			}
-
-			function updateChat(){
-			    $.post("send-messages.php", function(data){
-			      $('#scrollmessage').html(data);
-			    });
-			}
-
-			function updateOnline(){
-			    $.post("online.php", function(data){
-			    $('#online').html(data);
-			    });
-			}
 
 		</script>
 	</body>

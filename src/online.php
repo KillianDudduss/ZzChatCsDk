@@ -4,7 +4,14 @@
 if (!isset($_SESSION['username'])) 
 { 
   session_start();
-} 
+}
+if(empty($_SESSION['login'])) 
+{
+  // Si inexistante ou nulle, on redirige vers le formulaire de login
+  header('Location: ./../index.php');
+  exit();
+}
+
 IsConnected();
 
 function IsConnected () 

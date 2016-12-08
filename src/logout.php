@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <?php
 
-session_start();
-logout($_SESSION['login']);
+if (!isset($_SESSION['username'])) 
+{ 
+  session_start();
+}
+if(empty($_SESSION['login'])) 
+{
+  // Si inexistante ou nulle, on redirige vers le formulaire de login
+  header('Location: ./../index.php');
+  exit();
+}
+logout($_SESSION['username']);
 
 function logout($username)
 {
@@ -24,9 +33,13 @@ function logout($username)
 		}
 		fclose($file);
 	}
+	// Réinitialisation du tableau de session
+	// On le vide intégralement
+	$_SESSION = array();
+	// Destruction de la session
 	session_destroy();
+	// Destruction du tableau de session
 	unset($_SESSION);
-	header('Location: ../index.php');
 }
 
 
