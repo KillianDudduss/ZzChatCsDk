@@ -9,6 +9,8 @@ if (!isset($_SESSION['username']))
 
 IsConnected();
 
+//Function used to write into the user box the name of the users who are connected to the chat
+
 function IsConnected () 
 { 
   $filename='./../db/online.txt'; 
@@ -26,6 +28,7 @@ function IsConnected ()
   else 
   { 
     echo "Personne n'est connecté!"; 
+   //This is normally not possible to see this message.
   } 
 } 
 
