@@ -13,11 +13,15 @@ if(empty($_SESSION['login']))
 }
 logout($_SESSION['username']);
 
+
+//function to log out of the current session
+
 function logout($username)
 {
 	$filename='./../db/online.txt';
 	if (filesize($filename)!=0)
 	{
+		//erasing the name of the current user of the online.txt which is the file which contains the name of the online sessions.
 		$file=fopen($filename,'r');
 		$filecontents=fread($file,filesize($filename));
 		fclose($file);
@@ -33,12 +37,12 @@ function logout($username)
 		}
 		fclose($file);
 	}
-	// Réinitialisation du tableau de session
-	// On le vide intégralement
+	// Reset the session table
+	// We empty it completely
 	session_unset ();
-	// Destruction de la session
+	//Session destruction
 	session_destroy();
-	// Destruction du tableau de session
+	//Session table destruction
 	unset($_SESSION);
 }
 
