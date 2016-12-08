@@ -6,7 +6,9 @@ if (!isset($_SESSION['username']))
 }
 
 sendmessages(); 
- 
+
+// 2 functions to send display the message into the chat box
+
 function sendmessages() 
 { 
   $filename='./../db/messages.txt'; 
