@@ -7,7 +7,7 @@ if (!isset($_SESSION['username']))
 
 got_messages();
 
-//PHP function to put the message into the chat box.
+//PHP function to collect the message from the textarea that needs to be put into the chat box.
 
 function got_messages()
 {
