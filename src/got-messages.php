@@ -7,6 +7,8 @@ if (!isset($_SESSION['username']))
 
 got_messages();
 
+//PHP function to put the message into the chat box.
+
 function got_messages()
 {
 	if (isset($_POST['text']))
