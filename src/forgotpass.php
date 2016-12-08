@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
  	<head>
 		<title> Zz Chat </title>
@@ -81,7 +82,7 @@
 																				Nous avons pris en compte votre demande et nous vous transmettons ici votre mot de passe.
 																				Si vous n'êtes pas celui à l'origine de cette demande, n'hésitez pas à aller changer votre mot de passe sur le site.
 																				<br>
-																				<b> Votre mot de passe est :</b>".$password."<br>
+																				<b> cliquer <a href='http://localhost/zzchat/src/recoverpass.php?key=".md5($username)."'>ICI</a> pour réinitialiser votre mot de passe.</b><br>
 																				L'equipe ZzChat Vous souhaite une bonne journée.
 																			</body>
 																		</html>";
@@ -116,7 +117,7 @@
 													//=====Envoi de l'e-mail.
 													mail($mail,$sujet,$message,$header);
 													//==========
-													echo "Votre mot de passe vous à été envoyé par e-Mail.";
+													echo "Un EMail de récuperation vous a été envoyé.";
 												}
 												else
 												{

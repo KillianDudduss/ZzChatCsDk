@@ -1,17 +1,25 @@
 <?php
+
 if (!isset($_SESSION['username'])) 
 { 
-  session_start(); 
+  session_start();
 }
+if(empty($_SESSION['login'])) 
+{
+  // Si inexistante ou nulle, on redirige vers le formulaire de login
+  header('Location: ./../index.php');
+  exit();
+}
+
 got_messages();
 
-Function got_messages()
+function got_messages()
 {
-	if ((isset($_POST['message-submit']))&&(isset($_POST['message-send'])))
+	if (isset($_POST['text']))
 	{
 		$username=$_SESSION['username'];
 		$now=date("d M Y, G:i", time());
-		$message_send=$_POST['message-send'];
+		$message_send=$_POST['text'];
 		$message = $username.";;".$message_send.";;".$now;
 		$filename='./../db/messages.txt';
 		if (filesize($filename)!=0)
@@ -27,7 +35,6 @@ Function got_messages()
 		$file=fopen($filename,'w');
 		fwrite($file, $filecontent.$message."\r\n");
 		fclose($file);
-		header('Location:corpschat.php');
 	}
 }
 

@@ -31,6 +31,27 @@ function scrollbas(){
   document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
 }
 
+function send(){
+    var texte = $("#message-send").val();
+    $("#message-send").val('').focus();
+    $.post("got-messages.php", {text : texte}, function(data){
+        console.log(data);
+    });
+    updateChat();
+}
+
+function updateChat(){
+    $.post("send-messages.php", function(data){
+      $('#scrollmessage').html(data);
+    });
+}
+
+function updateOnline(){
+    $.post("online.php", function(data){
+    $('#online').html(data);
+    });
+}
+
 
 function balise(bal) 
 {
@@ -56,11 +77,16 @@ function balise(bal)
 			var balisePrev = '[error]';
 			var balisePost = '[/error]';
 	}
-	var textbox = document.getElementById('message-send');
 	$('#message-send').focus();
 	var txt = balisePrev + window.getSelection() + balisePost;
-	if(textbox.selectionStart != undefined) 
+	if(document.getElementById('message-send').selectionStart != undefined) 
 	{
-		textbox.value = textbox.value.substring(0, textbox.selectionStart) + txt + textbox.value.substring(textbox.selectionEnd, textbox.value.length);
+		document.getElementById('message-send').value = document.getElementById('message-send').value.substring(0, document.getElementById('message-send').selectionStart) + txt + document.getElementById('message-send').value.substring(document.getElementById('message-send').selectionEnd, document.getElementById('message-send').value.length);
 	}
 }
+
+
+$("#message-submit").on("click", function(){
+        send();
+});
+

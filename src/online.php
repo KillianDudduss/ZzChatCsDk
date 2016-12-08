@@ -4,9 +4,17 @@
 if (!isset($_SESSION['username'])) 
 { 
   session_start();
-} 
- 
-Function IsConnected () 
+}
+if(empty($_SESSION['login'])) 
+{
+  // Si inexistante ou nulle, on redirige vers le formulaire de login
+  header('Location: ./../index.php');
+  exit();
+}
+
+IsConnected();
+
+function IsConnected () 
 { 
   $filename='./../db/online.txt'; 
   if (filesize($filename)!=0) 
