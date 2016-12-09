@@ -45,8 +45,8 @@ if(empty($_SESSION['username']))
 	            <li id="logout" class="" onclick="BasculeElement(this);"><a href="logout.php"><?php echo $TXT_12; ?></a></li>
 	            <li id="parameter" class="" onclick="BasculeElement(this);"><a href="#parameter"><?php echo $TXT_13; ?></a></li>
 	            <li id="contact" class="" onclick="BasculeElement(this);"><a href="#contact"><?php echo $TXT_3; ?></a></li>
-		    <li id="fr" class="" onclick="BasculeElement(this);"><a href="?langue=fr" >FR</a></li>
-	   	    <li id="en" class="" onclick="BasculeElement(this);"><a href="?langue=en" >EN</a></li>
+		   		<li id="fr" class="" ><a href="?langue=fr" >FR</a></li>    <!--style="display : none;"-->
+	   	    	<li id="en" class="" ><a href="?langue=en" >EN</a></li>
 	          </ul>
 	        </div>
 	      </div>
@@ -59,7 +59,7 @@ if(empty($_SESSION['username']))
 			        </div>
 				    <div id="#chat" style="display: block;">
 				    	<div class="messagecontainer">
-					    	<div class="scroll" id="scrollmessage">
+					    	<div class="scroll" id="scrollmessage" onLoad="scrollbas()">
 					    		
 					    	</div>
 					    </div>

@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
  	</head>
  	<body>
+    <?php $path=".";
+          include($path.'/langchoice.php');
+    ?>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
     		<div class="navbar-header">
@@ -21,7 +24,9 @@
        	</div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li id="login" class="active" onclick="BasculeElement(this);"><a href="#recover">Récupérer mot de passe</a></li>
+            <li id="recover" class="active" onclick="BasculeElement(this);"><a href="#recover"><?php echo $TXT_19; ?></a></li>
+            <li id="fr" class="" ><a href="?langue=fr" >FR</a></li>    <!--style="display : none;"-->
+            <li id="en" class="" ><a href="?langue=en" >EN</a></li>
           </ul>
         </div>
       </div>
@@ -38,8 +43,6 @@
 
                   <form class="form" id="#recover" action="./recovermod.php" method="post" role="form" style="display: block;">
                     <?php
-                    $path=".";
-                    include($path.'/langchoice.php');
                     if(isset($_GET["erreur"])) 
                     {
                       $erreur = $_GET["erreur"];
@@ -55,20 +58,20 @@
                     }
                     ?>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Mot de Passe"/>
+                      <input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder=<?php echo $TXT_5; ?>></input>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder="Mot de Passe"/>
+                      <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder=<?php echo $TXT_10; ?>></input>
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                          <input type="submit" name="recover-submit" id="recover-submit" tabindex="4" class="form-control btn btn-login" value="Récupérer mot de passe"/>
+                          <input type="submit" name="recover-submit" id="recover-submit" tabindex="4" class="form-control btn btn-login" value=<?php echo $TXT_19; ?>></input>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <input type="hidden" name="key" value=<?php echo $_GET['key'] ?>></input>
+                  <input type="hidden" name="key" value=<?php if(isset($_GET['key'])) echo $_GET['key'];?>></input>
                 </form>
               </div>
             </div>

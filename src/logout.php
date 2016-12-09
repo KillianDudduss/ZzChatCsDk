@@ -5,12 +5,6 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 }
-if(empty($_SESSION['login'])) 
-{
-  // Si inexistante ou nulle, on redirige vers le formulaire de login
-  header('Location: ./../index.php');
-  exit();
-}
 logout($_SESSION['username']);
 
 
@@ -29,7 +23,6 @@ function logout($username)
 		$lines=explode(";;", $filecontents);
 		foreach ($lines as $line) 
 		{
-			echo $line;
 			if(($line!=$username)&&($line!=""))
 			{
 				fwrite($file, $line.";;");
@@ -44,6 +37,7 @@ function logout($username)
 	session_destroy();
 	//Session table destruction
 	unset($_SESSION);
+	header('Location: ./../index.php');
 }
 
 

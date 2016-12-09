@@ -1,5 +1,5 @@
 function messagesend(_this){
-  document.getElementById('message-send')
+  document.getElementById('message-send');
 }
 
 $('input[type=button]').on('click',function(){
@@ -27,8 +27,17 @@ function BasculeElement(_this){
       }           
 }
 
+function BasculeLangue(_this){
+  var menu = document.getElementsById('#fr');
+  if (menu.style.display == 'none') menu.style.display = 'block';
+  else menu.style.display = 'none';
+  var menu = document.getElementsById('#en');
+  if (menu.style.display == 'none') menu.style.display = 'block';
+  else menu.style.display = 'none';     
+}
+
 function scrollbas(){ 
-  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
+  document.getElementById('#scrollmessage').scrollTop = document.getElementById('#scrollmessage').scrollHeight; 
 }
 
 function send(){
@@ -38,11 +47,13 @@ function send(){
         console.log(data);
     });
     updateChat();
+    scrollbas();
 }
 
 function updateChat(){
     $.post("send-messages.php", function(data){
       $('#scrollmessage').html(data);
+      scrollbas();
     });
 }
 
@@ -88,5 +99,6 @@ function balise(bal)
 
 $("#message-submit").on("click", function(){
         send();
+        scrollbas();
 });
 
