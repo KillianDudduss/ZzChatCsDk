@@ -8,6 +8,9 @@
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
 	</head>
 	<body>
+		<?php $path=".";
+        include($path.'/langchoice.php');
+		?>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
 	    		<div class="navbar-header">
@@ -22,6 +25,8 @@
 	        <div id="navbar" class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
 	          	<li class="active"><a href="#forgotpass"><?php echo $TXT_8; ?></a></li>
+	          	<li id="fr" class="" ><a href="?langue=fr" >FR</a></li>    <!--style="display : none;"-->
+	   	    	<li id="en" class="" ><a href="?langue=en" >EN</a></li>
 	          </ul>
 	        </div>
 	      </div>
@@ -44,8 +49,6 @@
 	                <form id="login-form-link" action="forgotpass.php" method="post" role="form" style="display: block;">
 	                	<div class="form-group">
 	                		<?php
-	                		$path=".";
-            				include($path.'/langchoice.php');
 	                		if (isset($_POST['recover-submit']))
 	                		{
 	                			$filename="./../db/users.txt";
@@ -83,7 +86,9 @@
 																				<b>".$TXT_20."</b>, ".$TXT_21." <i>ZzChat</i>.<br>
 																				".$TXT_22."
 																				<br>
-																				<b> ".$TXT_23." <a href='http://localhost/zzchat/src/recoverpass.php?key=".md5($username)."'>".$TXT_24."</a> ".$TXT_25."</b><br>
+																				<b> ".$TXT_23." <a href='http://localhost/zzchat/src/recoverpass.php?key=".md5($username)."'>
+																				".$TXT_24."</a> ".$TXT_25."</b>
+																				<br>
 																				".$TXT_26."
 																			</body>
 																		</html>";
@@ -144,7 +149,7 @@
 		                <div class="form-group">
 		                  <div class="row">
 		                    <div class="col-sm-6 col-sm-offset-3">
-		                        <input type="submit" name="recover-submit" id="recover-submit" tabindex="4" class="form-control btn btn-login" value="Récupérer Mot de Passe">
+		                        <input type="submit" name="recover-submit" id="recover-submit" tabindex="4" class="form-control btn btn-login" value=<?php echo $TXT_19; ?>>
 		                    </div>
 		                  </div>
 		                </div>
