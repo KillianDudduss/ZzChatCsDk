@@ -1,4 +1,5 @@
 <?php
+
 function set_cookie($langue)
 	{
 //Duration of the cookie (1 year)
@@ -14,4 +15,5 @@ function set_cookie($langue)
 //		echo 'Le cookie a marché<br />';		
 		}
 	}
+
 ?>
