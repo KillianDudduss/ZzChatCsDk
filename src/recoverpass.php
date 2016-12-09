@@ -38,16 +38,18 @@
 
                   <form class="form" id="#recover" action="./recovermod.php" method="post" role="form" style="display: block;">
                     <?php
+                    $path=".";
+                    include($path.'/langchoice.php');
                     if(isset($_GET["erreur"])) 
                     {
                       $erreur = $_GET["erreur"];
                       if ($erreur==-1)
                       {
-                        echo "Le lien est invalide.<br>";
+                        echo $TXT_30;
                       }
                       else
                       {
-                        echo "Le mot de passe et la confirmation ne correspondent pas.<br>";
+                        echo $TXT_31;
                         $erreur=-1;
                       }
                     }
@@ -66,7 +68,7 @@
                       </div>
                     </div>
                   </div>
-                  <input type="hidden" name="key" value="<?php echo $_GET['key'] ?>"></input>
+                  <input type="hidden" name="key" value=<?php echo $_GET['key'] ?>></input>
                 </form>
               </div>
             </div>

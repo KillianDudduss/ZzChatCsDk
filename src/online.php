@@ -13,6 +13,8 @@ IsConnected();
 
 function IsConnected () 
 { 
+  $path=".";
+  include($path.'/langchoice.php');
   $filename='./../db/online.txt'; 
   if (filesize($filename)!=0) 
   { 
@@ -27,7 +29,7 @@ function IsConnected ()
   } 
   else 
   { 
-    echo "Personne n'est connecté!"; 
+    echo $TXT_33; 
    //This is normally not possible to see this message.
   } 
 } 

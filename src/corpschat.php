@@ -15,20 +15,21 @@ if(empty($_SESSION['username']))
 <!DOCTYPE html>
 <html>
 	<head>
-		//Head
+		<!--Head-->
 		<title> Zz Chat </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
  		<script type="text/javascript" src="../static/JS/bootstrap.js"></script>
  		<script type="text/javascript" src="../static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
-		<?php include('src/langchoice.php'); ?>
+		<?php 	$path=".";
+            	include($path.'/langchoice.php'); ?>
     	<link rel="stylesheet" type="text/css" href="./../static/CSS/moncss.css">
 	</head>	
 	<body>
-		//BOdy
+		<!--BOdy-->
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
-		      	//Navigation bar
+		      	<!--Navigation bar-->
 	    		<div class="navbar-header">
 	     		  	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 	           		 	<span class="sr-only">Toggle navigation</span>
@@ -50,12 +51,12 @@ if(empty($_SESSION['username']))
 	        </div>
 	      </div>
 	    </nav>
-	    <div class="panel panel-login">
-           <hr>
-        </div>
         <div class="container">
       		<div class="row">
         		<div class="col-md-6 col-md-offset-3">
+        			<div class="panel panel-login">
+			           <hr>
+			        </div>
 				    <div id="#chat" style="display: block;">
 				    	<div class="messagecontainer">
 					    	<div class="scroll" id="scrollmessage">
@@ -64,7 +65,7 @@ if(empty($_SESSION['username']))
 					    </div>
 				    	<form class="form" id="send-message-form" role="form">
 				    		<div id="toolbar" >
-							//Toolbar for blod, italic...
+							<!--Toolbar for blod, italic...-->
 						<strong><button id="gras" onclick="balise('bold');"><?php echo $TXT_14; ?></button></strong>
 						<i><button id="italic" onclick="balise('italic');">I</button></i>
 						<u><button id="souligne" onclick="balise('underline');">U</button></u>
@@ -76,7 +77,7 @@ if(empty($_SESSION['username']))
 				    		<div class="form-group">
 		                      <div class="row">
 		                        <div class="col-sm-6 col-sm-offset-3">
-						//Sendung button 
+						<!--Sendung button -->
 		                          	<input type="submit" name="message-submit" id="message-submit" tabindex="1" class="form-control btn btn-register" value= <?php echo $TXT_18; ?> />
 		                        </div>
 		                      </div>
@@ -92,8 +93,11 @@ if(empty($_SESSION['username']))
 				    	<?php echo $TXT_3; ?>
 		    		</div>
 		    	</div>
+		    	<div class="panel panel-login">
+		    		<br>
+			    </div>
 		    	<div class="right" >
-				//Connected users
+				<!--Connected users-->
 		    		<h3><center><?php echo $TXT_17; ?></center></h3>
 		    		<div class="users" id="online">
 			    		
@@ -101,7 +105,7 @@ if(empty($_SESSION['username']))
 		    	</div>
 		    </div>
 		</div>
-		//Script to automatize the chat, the update and so on. 
+		<!--Script to automatize the chat, the update and so on. -->
 		<script>
 
 			$(document).on("keydown", function(event){
