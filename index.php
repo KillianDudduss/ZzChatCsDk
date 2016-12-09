@@ -14,40 +14,45 @@ if (!isset($_SESSION['email']))
 
 //Language cookie
 
-if (isset ($_COOKIE['CHOIXlang']) && $_GET['langue'] != 'fr' && $_GET['langue'] != 'en')	
+if ((isset ($_COOKIE['CHOIXlang'])) && isset($_GET['langue']) && ($_GET['langue'] != 'fr') && ($_GET['langue'] != 'en'))
 	{  			
 	$langue = $_COOKIE['CHOIXlang'];
 	}
 // The choice of the cookie is declared by the url
-else if ($_GET['langue'] == 'en' || $_GET['langue'] == 'fr')
-	{ 
+else 
+{
+  include ('./src/set_cookie.php');
+  if (isset($_GET['langue'])&&(($_GET['langue'] == 'en') || ($_GET['langue'] == 'fr')))
+	{
+  echo "coucou"; 
 	$langue = $_GET['langue'];
 	set_cookie($langue);
 	}
 
 // If no language is declared then we try to guess it with the default language of the browser
-else 			
+  else 			
 	{
-	$langue = substr($HTTP_SERVER_VARS['HTTP_ACCEPT_LANGUAGE'],0,2);
+  echo "coucou";
+	$langue = 'fr';
 	set_cookie($langue);
 	}
-
+}
 ?>
 
 <html>
  	<head>
-		//head
- 		<title> Zz Chat </title>
+    <!-- head-->
+		<title> Zz Chat </title>
  		<script type="text/javascript" src="static/JS/bootstrap.js"></script>
     	    <script type="text/javascript" src="static/JS/monjs.js"></script>
             <link rel="stylesheet" type="text/css" href="static/CSS/bootstrap.css">
 	    <link rel="stylesheet" type="text/css" href="static/CSS/moncss.css">
-	    <?php include('src/langchoice.php'); ?>
+	    <?php include('./src/langchoice.php'); ?>
  	</head>
  	<body>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-	      //navbar
+	      <!--navbar-->
     		<div class="navbar-header">
      		  	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
            		 	<span class="sr-only">Toggle navigation</span>
@@ -62,8 +67,8 @@ else
             <li id="login" class="active" onclick="BasculeElement(this);"><a href="#login"><?php echo $TXT_1; ?></a></li>
             <li id="logon" class="" onclick="BasculeElement(this);"><a href="#logon"><?php echo $TXT_2; ?></a></li>
             <li id="contact" class="" onclick="BasculeElement(this);"><a href="#contact"><?php echo $TXT_3; ?></a></li>
-	    <li id="fr" class="" onclick="BasculeElement(this);"><a href="?langue=fr" >FR</a></li>
-	    <li id="en" class="" onclick="BasculeElement(this);"><a href="?langue=en" >EN</a></li>
+	          <li id="fr" type="hidden" class=""><a href="?langue=fr" >FR</a></li>
+	          <li id="en" type="" class=""><a href="?langue=en" >EN</a></li>
           </ul>
         </div>
       </div>
@@ -77,8 +82,7 @@ else
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-		      
-		//error management
+		        <!--error management-->
                   <form class="form" id="#login" action="src/login.php" method="post" role="form" style="display: block;">
                     <?php
                     if(!isset($_GET["erreur"])) 
@@ -109,7 +113,7 @@ else
                       <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder=<?php echo $TXT_4; ?> value=""/>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder=<?php echo $TXT_5; ?>/>
+                      <input type="password" name="password" id="password" tabindex="2" placeholder=<?php echo $TXT_5; ?> class="form-control"/>
                     </div>
                     <div class="form-group text-center">
                       <input type="checkbox" tabindex="3" class="" name="remember" id="remember"/>
@@ -118,7 +122,7 @@ else
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value=<?php echo $TXT_7; ?> />
+                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" value=<?php echo $TXT_7; ?> class="form-control btn btn-login" />
                         </div>
                       </div>
                     </div>
@@ -136,16 +140,16 @@ else
                 </form>
                 <form id="#logon" action="src/logon.php" method="post" role="form" style="display: none;">
                   <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder=<?php echo $TXT_4; ?> value="" >
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder=<?php echo $TXT_4; ?> value="" />
                   </div>
                   <div class="form-group">
-                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder=<?php echo $TXT_9; ?> value="" >
+                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder=<?php echo $TXT_9; ?> value="" />
                   </div>
                   <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder=<?php echo $TXT_5; ?> >
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder=<?php echo $TXT_5; ?> />
                   </div>
                   <div class="form-group">
-                    <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder=<?php echo $TXT_10; ?> >
+                    <input type="password" name="confirmpass" id="confirmpass" tabindex="2" class="form-control" placeholder=<?php echo $TXT_10; ?> />
                   </div>
                   <div class="form-group">
                     <div class="row">
