@@ -12,6 +12,8 @@ logon($_POST['username'],$_POST['password'],$_POST['confirmpass'],$_POST['email'
 
 function logon($username,$password,$confirmpass,$email)
 {
+	$path=".";
+    include($path.'/langchoice.php');
 	if (isset($username)&&isset($password)&&isset($confirmpass)&&isset($email))
 	{
 		//we need to check if the pass = confirmpass
@@ -46,7 +48,7 @@ function logon($username,$password,$confirmpass,$email)
 			else
 			{
 				//error message if the user already exist
-				echo "le nom d'utilisateur est déja utilisé, veuillez vous connectez ou en choisir un autre.";
+				echo $TXT_32;
 				// We need to echo it into the correct language too...
 			}
 		}

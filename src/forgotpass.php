@@ -44,6 +44,8 @@
 	                <form id="login-form-link" action="forgotpass.php" method="post" role="form" style="display: block;">
 	                	<div class="form-group">
 	                		<?php
+	                		$path=".";
+            				include($path.'/langchoice.php');
 	                		if (isset($_POST['recover-submit']))
 	                		{
 	                			$filename="./../db/users.txt";
@@ -78,12 +80,11 @@
 																			<head>
 																			</head>
 																			<body>
-																				<b>Bonjour</b>, vous avez demandez de récupérer votre mot de passe pour accéder au <i>ZzChat</i>.<br>
-																				Nous avons pris en compte votre demande et nous vous transmettons ici votre mot de passe.
-																				Si vous n'êtes pas celui à l'origine de cette demande, n'hésitez pas à aller changer votre mot de passe sur le site.
+																				<b>".$TXT_20."</b>, ".$TXT_21." <i>ZzChat</i>.<br>
+																				".$TXT_22."
 																				<br>
-																				<b> cliquer <a href='http://localhost/zzchat/src/recoverpass.php?key=".md5($username)."'>ICI</a> pour réinitialiser votre mot de passe.</b><br>
-																				L'equipe ZzChat Vous souhaite une bonne journée.
+																				<b> ".$TXT_23." <a href='http://localhost/zzchat/src/recoverpass.php?key=".md5($username)."'>".$TXT_24."</a> ".$TXT_25."</b><br>
+																				".$TXT_26."
 																			</body>
 																		</html>";
 													//==========
@@ -93,7 +94,7 @@
 													//==========
 													 
 													//=====Subject.
-													$sujet = "Récuperation du mot de passe ZzChat";
+													$sujet = $TXT_19;
 													//=========
 													 
 													//=====MAil header creation.
@@ -117,18 +118,18 @@
 													//====Sending the mail.
 													mail($mail,$sujet,$message,$header);
 													//==========
-													echo "Un EMail de récuperation vous a été envoyé.";
+													echo $TXT_27;
 												}
 												else
 												{
-													echo "Votre adresse mail ne correspond pas à votre nom d'utilisateur.";
+													echo $TXT_28;
 												}
 											}
 										}
 									}
 									if ($erreur==-1)
 									{
-										echo "Votre nom d'utilisateur est inconnu, veuillez vous inscrire en <a href='./../index.php#logon'>cliquant ici</a>";
+										echo $TXT_29;
 									}
 								}
 	                		}
