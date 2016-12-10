@@ -83,3 +83,7 @@ simon;;<b>coucou</b>;;10 Dec 2016, 13:32
 simon;;<b>enfiiinnnnnnnnn !!!!</b>;;10 Dec 2016, 13:32
 simon;;<i>italique</i>;;10 Dec 2016, 13:33
 simon;;<u>souligné</u>;;10 Dec 2016, 13:33
+simon;;<font color = "black">couleur</font>;;10 Dec 2016, 13:43
+simon;;<font color = "blue">bleu</font>;;10 Dec 2016, 13:48
+simon;;<font color = "pink">rose</font>;;10 Dec 2016, 14:08
+simon;;<font color = "red">rouge</font>;;10 Dec 2016, 14:09

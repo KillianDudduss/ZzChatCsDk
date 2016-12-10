@@ -18,12 +18,12 @@ if (!isset($_SESSION['email']))
  	<head>
     <!-- head-->
 		<title> Zz Chat </title>
- 		<script type="text/javascript" src="static/JS/bootstrap.js"></script>
-    	    <script type="text/javascript" src="static/JS/monjs.js"></script>
-            <link rel="stylesheet" type="text/css" href="static/CSS/bootstrap.css">
-	    <link rel="stylesheet" type="text/css" href="static/CSS/moncss.css">
-	    <?php $path="./src";
-            include($path.'/langchoice.php'); ?>
+ 		<script type="text/javascript" src="./static/JS/bootstrap.js"></script>
+    <script type="text/javascript" src="./static/JS/monjs.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/CSS/bootstrap.css">
+	  <link rel="stylesheet" type="text/css" href="./static/CSS/moncss.css">
+	  <?php $path="./src";
+          include($path.'/langchoice.php'); ?>
  	</head>
  	<body>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
