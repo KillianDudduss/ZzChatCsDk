@@ -22,10 +22,10 @@ if (!isset($_SESSION['email']))
     <script type="text/javascript" src="./static/JS/monjs.js"></script>
     <link rel="stylesheet" type="text/css" href="./static/CSS/bootstrap.css">
 	  <link rel="stylesheet" type="text/css" href="./static/CSS/moncss.css">
-	  <?php $path="./src";
-          include($path.'/langchoice.php'); ?>
  	</head>
  	<body>
+    <?php $path="./src";
+          include($path.'/langchoice.php'); ?>
  		<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
 	      <!--navbar-->
