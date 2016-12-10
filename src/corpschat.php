@@ -18,8 +18,8 @@ if(empty($_SESSION['username']))
 		<!--Head-->
 		<title> Zz Chat </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
- 		<script type="text/javascript" src="../static/JS/bootstrap.js"></script>
- 		<script type="text/javascript" src="../static/JS/monjs.js"></script>
+ 		<script type="text/javascript" src="./../static/JS/bootstrap.js"></script>
+ 		<script type="text/javascript" src="./../static/JS/monjs.js"></script>
  		<link rel="stylesheet" type="text/css" href="./../static/CSS/bootstrap.css">
 		<?php 	$path=".";
             	include($path.'/langchoice.php'); ?>
@@ -59,18 +59,17 @@ if(empty($_SESSION['username']))
 			        </div>
 				    <div id="#chat" style="display: block;">
 				    	<div class="messagecontainer">
-					    	<div class="scroll" id="scrollmessage" onLoad="scrollbas()">
+					    	<div class="scroll" id="scrollmessage">
 					    		
 					    	</div>
 					    </div>
-				    	<form class="form" id="send-message-form" role="form">
-				    		<div id="toolbar" >
+					    <div id="toolbar" >
 							<!--Toolbar for blod, italic...-->
-						<strong><button id="gras" onclick="balise('bold');"><?php echo $TXT_14; ?></button></strong>
-						<i><button id="italic" onclick="balise('italic');">I</button></i>
-						<u><button id="souligne" onclick="balise('underline');">U</button></u>
-						<button id="lien" onclick="balise('link');"><?php echo $TXT_15; ?></button>
-                			</div> 
+								<strong><button id="gras" onclick="balise('bold');"><?php echo $TXT_14; ?></button></strong>
+								<i><button id="italic" onclick="balise('italic');">I</button></i>
+								<U><button id="souligne" onclick="balise('underline');">U</button></U>
+                		</div> 
+				    	<form class="form" id="send-message-form" role="form">
 				    		<div class="form-group">
 				    			<textarea id="message-send" name="message-send" rows="3"></textarea>
 				    		</div>
@@ -78,7 +77,7 @@ if(empty($_SESSION['username']))
 		                      <div class="row">
 		                        <div class="col-sm-6 col-sm-offset-3">
 						<!--Sendung button -->
-		                          	<input type="submit" name="message-submit" id="message-submit" tabindex="1" class="form-control btn btn-register" value= <?php echo $TXT_18; ?> />
+		                          	<input type="submit" name="message-submit" id="message-submit" onclick="send();" tabindex="1" class="form-control btn btn-register" value= <?php echo $TXT_18; ?> />
 		                        </div>
 		                      </div>
 		                    </div>
@@ -125,6 +124,7 @@ if(empty($_SESSION['username']))
 			  setInterval(updateChat, 2000);
 			  setInterval(updateOnline,5000);
 			});
+
 
 		</script>
 	</body>

@@ -1,15 +1,3 @@
-function messagesend(_this){
-  document.getElementById('message-send');
-}
-
-$('input[type=button]').on('click',function(){
-  var cursorPos=$('#message-send').prop('selectionStart');
-  var v = $('#message-send').val(); 
-  var textBefore = v.substring(0,cursorPos);
-  var textAfter = v.substring(cursorPos,v.length);
-  $('#message-send').val(textBefore+$(this).val()+textAfter);
-})
-
 
 function BasculeElement(_this){
       var Onglet_li = document.getElementsByTagName('LI');
@@ -27,17 +15,17 @@ function BasculeElement(_this){
       }           
 }
 
-function BasculeLangue(_this){
-  var menu = document.getElementsById('#fr');
+function BasculeLangue(){
+  var menu = document.getElementById('#fr');
   if (menu.style.display == 'none') menu.style.display = 'block';
   else menu.style.display = 'none';
-  var menu = document.getElementsById('#en');
-  if (menu.style.display == 'none') menu.style.display = 'block';
-  else menu.style.display = 'none';     
+  var menu = document.getElementById('#en');
+  if (menu.style.display == 'block') menu.style.display = 'none';
+  else menu.style.display = 'block';     
 }
 
 function scrollbas(){ 
-  document.getElementById('#scrollmessage').scrollTop = document.getElementById('#scrollmessage').scrollHeight; 
+  document.getElementById('scrollmessage').scrollTop = document.getElementById('scrollmessage').scrollHeight; 
 }
 
 function send(){
@@ -48,13 +36,16 @@ function send(){
     });
     updateChat();
     scrollbas();
+    scrollbas();
+
 }
 
 function updateChat(){
     $.post("send-messages.php", function(data){
       $('#scrollmessage').html(data);
-      scrollbas();
     });
+    scrollbas();
+    scrollbas();
 }
 
 function updateOnline(){
@@ -63,6 +54,13 @@ function updateOnline(){
     });
 }
 
+function commande(nom, argument) {
+  if (typeof argument === 'undefined') {
+    argument = '';
+  }
+  // Exécuter la commande
+  document.execCommand(nom, false, argument);
+}
 
 function balise(bal) 
 {
@@ -77,8 +75,8 @@ function balise(bal)
 			var balisePost = '[/i]';
 		break;
 		case 'underline':
-			var balisePrev = '[u]';
-			var balisePost = '[/u]';
+			var balisePrev = '[U]';
+			var balisePost = '[/U]';
 		break;
 		case 'link':
 			var balisePrev = '<a href="">';
@@ -99,6 +97,5 @@ function balise(bal)
 
 $("#message-submit").on("click", function(){
         send();
-        scrollbas();
 });
 
