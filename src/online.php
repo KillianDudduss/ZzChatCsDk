@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 }
-
+include('./fonctions.php');
 
 IsConnected();
 
@@ -16,22 +16,20 @@ function IsConnected ()
   $path=".";
   include($path.'/langchoice.php');
   $filename='./../db/online.txt'; 
-  if (filesize($filename)!=0) 
-  { 
-    $file=fopen($filename,'r'); 
-    $filecontents=fread($file,filesize($filename)); 
-    fclose($file);  
+  $filecontents=lirefile($filename);
+  if ($filecontents=="")
+  {
+    echo $TXT_33; 
+   //This is normally not possible to see this message.
+  }
+  else
+  {
     $lines=explode(";;", $filecontents); 
     foreach ($lines as $line)  
     {  
       echo '<div>'.$line."</div>"; 
-    }  
-  } 
-  else 
-  { 
-    echo $TXT_33; 
-   //This is normally not possible to see this message.
-  } 
+    }
+  }
 } 
 
 ?>

@@ -4,37 +4,25 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 }
+include('./fonctions.php');
 
-sendmessages(); 
+sendmessages();
 
 // 2 functions to send display the message into the chat box
 
 function sendmessages() 
 { 
   $filename='./../db/messages.txt'; 
-  if (filesize($filename)!=0) 
-  { 
-    $file=fopen($filename,'r'); 
-    $filecontent=fread($file,filesize($filename)); 
-    fclose($file); 
-  } 
-  else 
-  { 
-    $filecontent=""; 
-  } 
+  $filecontent=lirefile($filename);
   $lines=explode("\r\n", $filecontent); 
   foreach ($lines as $line)  
   { 
     if ($line!="") 
     { 
-      afficher($line); 
+      $aff=afficher($line); 
+      echo $aff;
     } 
   } 
 } 
- 
-function afficher($line) 
-{ 
-  list($username,$message,$date)=explode(";;", $line); 
-  echo '<div class="userdate">'.$username." : ".$date." : ".'</div><div class="message">'.$message."</div>"; 
- 
-}
+
+?>

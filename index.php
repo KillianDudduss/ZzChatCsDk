@@ -70,7 +70,7 @@ if (!isset($_SESSION['email']))
                       $erreur = $_GET["erreur"];
                       if ($erreur==-1)
                       {
-                        echo "Votre login est inconnu, inscrivez vous avant de chatter avec les autres ZZ";
+                        echo $TXT_34;
                       }
                       else
                      {
@@ -80,7 +80,7 @@ if (!isset($_SESSION['email']))
                         }
                         else
                         {
-                          echo "Votre mot de passe est incorrect, il vous reste ".(3-$erreur)." tentatives";  //erreur1 for good login but bad pass
+                          echo $TXT_35.(3-$erreur).$TXT_36;  //erreur1 for good login but bad pass
                         }
                       }
                     }

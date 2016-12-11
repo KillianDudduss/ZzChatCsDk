@@ -5,8 +5,9 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 } 
-logon($_POST['username'],$_POST['password'],$_POST['confirmpass'],$_POST['email']);
+include('./fonctions.php');
 
+logon($_POST['username'],$_POST['password'],$_POST['confirmpass'],$_POST['email']);
 
 //Function to sign up.
 
@@ -20,9 +21,7 @@ function logon($username,$password,$confirmpass,$email)
 		if ($password==$confirmpass)
 		{
 			$filename='./../db/users.txt';
-			$file=fopen($filename, 'r');
-			$filecontents = fread($file, filesize($filename));
-			fclose($file);
+			$filecontents = lirefile($filename);
 			$lines=explode("\r\n", $filecontents);
 			$use=0;
 			foreach ($lines as $line) 

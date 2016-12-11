@@ -1,4 +1,3 @@
-simon;;bonjour;;13 Nov 2016, 10:53
 simon;;bonjour;;13 Nov 2016, 10:54
 simon;;hello;;13 Nov 2016, 10:56
 simon;;ca va ?;;13 Nov 2016, 10:56
@@ -70,13 +69,6 @@ simon;;fgdkh;;10 Dec 2016, 11:13
 simon;;rrr;;10 Dec 2016, 11:13
 simon;;fhggd;;10 Dec 2016, 11:16
 simon;;ohhh;;10 Dec 2016, 11:16
-simon;;yyy;;10 Dec 2016, 11:18
-simon;;dgtgtd;;10 Dec 2016, 12:45
-simon;;ohohoho;;10 Dec 2016, 12:45
-simon;;tttt;;10 Dec 2016, 13:02
-simon;;gdgd;;10 Dec 2016, 13:07
-simon;;[b]srdsd[/b];;10 Dec 2016, 13:07
-simon;;[b]tdtdtd[/b];;10 Dec 2016, 13:07
 simon;;'rzfr;;10 Dec 2016, 13:31
 simon;;dsfsf;;10 Dec 2016, 13:32
 simon;;<b>coucou</b>;;10 Dec 2016, 13:32

@@ -17,7 +17,7 @@ $TXT_11 = "Register Now";
 $TXT_12 = "Disconnect";
 $TXT_13 = "Settings";
 $TXT_14 = "Bold";
-$TXT_15 = "Link";
+$TXT_15 = "Link";   //ne sert plus à rien :) à utiliser ailleurs si jamais ;)
 $TXT_16 = "chat parameter";
 $TXT_17 = "Connected Users";
 $TXT_18 = "Send";
@@ -37,6 +37,9 @@ $TXT_30= "Le lien est invalide.<br>";
 $TXT_31= "Le mot de passe et la confirmation ne correspondent pas.<br>";
 $TXT_32= "le nom d'utilisateur est déja utilisé, veuillez vous connectez ou en choisir un autre.";
 $TXT_33= "Personne n'est connecté!";
+$TXT_34= "Votre login est inconnu, inscrivez vous avant de chatter avec les autres ZZ";
+$TXT_35= "Votre mot de passe est incorrect, il vous reste ";
+$TXT_36= " tentatives";
 
 
 ?>
