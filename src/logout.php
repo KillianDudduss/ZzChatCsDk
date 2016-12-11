@@ -5,6 +5,8 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 }
+include('./fonctions.php');
+
 logout($_SESSION['username']);
 
 
@@ -13,12 +15,10 @@ logout($_SESSION['username']);
 function logout($username)
 {
 	$filename='./../db/online.txt';
-	if (filesize($filename)!=0)
+	$filecontents=lirefile($filename);
+	if ($filecontents!="")
 	{
 		//erasing the name of the current user of the online.txt which is the file which contains the name of the online sessions.
-		$file=fopen($filename,'r');
-		$filecontents=fread($file,filesize($filename));
-		fclose($file);
 		$file=fopen($filename,'w');
 		$lines=explode(";;", $filecontents);
 		foreach ($lines as $line) 

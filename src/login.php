@@ -5,6 +5,8 @@ if (!isset($_SESSION['username']))
 { 
   session_start();
 }
+include('./fonctions.php');
+
 connect();
 
 
@@ -63,11 +65,9 @@ function login($login,$pass,$nb_erreur,$change)
 					{
 						$_SESSION['username'] = $username; //Keep the seesion load thanks to the header
 						$filename='./../db/online.txt';
-						if(filesize($filename)!=0)
+						$filecontents=lirefile($filename);
+						if($filecontents!="")
 						{
-							$file=fopen($filename,'r');
-							$filecontents=fread($file,filesize($filename));
-							fclose($file);
 							$lines=explode(";;", $filecontents);
 							$alreadyconnect=0;
 							foreach ($lines as $line) 
