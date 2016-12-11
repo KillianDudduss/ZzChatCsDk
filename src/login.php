@@ -49,7 +49,7 @@ function login($login,$pass,$nb_erreur,$change)
 		$file=fopen($filename, "r");
 		$filecontents = fread($file, filesize($filename));
 		fclose($file);
-		$lines=explode("\r\n", $filecontents);
+		$lines=explode("\n", $filecontents);
 		foreach ($lines as $line) 
 		{
 			if ($line!="")
@@ -66,7 +66,7 @@ function login($login,$pass,$nb_erreur,$change)
 						$_SESSION['username'] = $username; //Keep the seesion load thanks to the header
 						$filename='./../db/online.txt';
 						$filecontents=lirefile($filename);
-						if($filecontents!="")
+						if(filesize($filename)!=0)
 						{
 							$lines=explode(";;", $filecontents);
 							$alreadyconnect=0;

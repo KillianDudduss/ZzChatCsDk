@@ -15,7 +15,7 @@ function recover($key,$password,$confirmpass)
 		{
 			$filecontents = lirefile($filename);
 			$fileuser=fopen($filename, "w");
-			$lines=explode("\r\n", $filecontents);
+			$lines=explode("\n", $filecontents);
 			foreach ($lines as $line) 
 			{
 				if ($line!="")

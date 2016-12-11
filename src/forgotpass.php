@@ -57,7 +57,7 @@
 									$file=fopen($filename, "r");
 									$filecontents = fread($file, filesize($filename));
 									fclose($file);
-									$lines=explode("\r\n", $filecontents);
+									$lines=explode("\n", $filecontents);
 									$erreur=-1;
 									foreach ($lines as $line) 
 									{
