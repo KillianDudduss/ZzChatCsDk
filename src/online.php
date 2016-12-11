@@ -17,7 +17,7 @@ function IsConnected ()
   include($path.'/langchoice.php');
   $filename='./../db/online.txt'; 
   $filecontents=lirefile($filename);
-  if ($filecontents=="")
+  if (filesize($filename)==0)
   {
     echo $TXT_33; 
    //This is normally not possible to see this message.
@@ -25,7 +25,7 @@ function IsConnected ()
   else
   {
     $lines=explode(";;", $filecontents); 
-    foreach ($lines as $line)  
+    foreach ($lines as $line) 
     {  
       echo '<div>'.$line."</div>"; 
     }
