@@ -22,7 +22,7 @@ function logon($username,$password,$confirmpass,$email)
 		{
 			$filename='./../db/users.txt';
 			$filecontents = lirefile($filename);
-			$lines=explode("\r\n", $filecontents);
+			$lines=explode("\n", $filecontents);
 			$use=0;
 			foreach ($lines as $line) 
 			{

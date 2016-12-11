@@ -14,7 +14,7 @@ function sendmessages()
 { 
   $filename='./../db/messages.txt'; 
   $filecontent=lirefile($filename);
-  $lines=explode("\r\n", $filecontent); 
+  $lines=explode("\n", $filecontent); 
   foreach ($lines as $line)  
   { 
     if ($line!="") 
