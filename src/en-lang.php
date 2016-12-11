@@ -2,44 +2,41 @@
 
 //text in english, to swap between french and english 
 
-
 $TXT_1 = "Sign In";
 $TXT_2 = "Sign up";
 $TXT_3 = "Contact";
 $TXT_4 = "Login";
 $TXT_5 = "Password";
 $TXT_6 = "Remember me";
+$TXT_6 = "Remember me";
 $TXT_7 = "Connect";
 $TXT_8 = "Password forgotten?";
 $TXT_9 = "Email Address";
 $TXT_10 = "Confirm_Password";
-$TXT_11 = "Register Now";
-$TXT_12 = "Disconnect";
+$TXT_11 = "Register Now";$TXT_12 = "Disconnect";
 $TXT_13 = "Settings";
 $TXT_14 = "Bold";
-$TXT_15 = "Link";   //ne sert plus à rien :) à utiliser ailleurs si jamais ;)
+$TXT_15 = "Link"; //ne sert plus à rien :) à utiliser ailleurs si jamais ;)
 $TXT_16 = "chat parameter";
 $TXT_17 = "Connected Users";
 $TXT_18 = "Send";
-$TXT_19= "Récuperation du mot de passe ZzChat";
-$TXT_20= "Bonjour";
-$TXT_20= "vous avez demandez de récupérer votre mot de passe pour accéder au"; //mot suivant : zzchat ;)
-$TXT_21= "Nous avons pris en compte votre demande et nous vous transmettons ici votre mot de passe. Si vous n'êtes pas celui à l'origine de cette demande, n'hésitez pas à aller changer votre mot de passe sur le site.";
-$TXT_22= "cliquer";
-$TXT_23= "pour réinitialiser votre mot de passe.";
-$TXT_24= "L'equipe ZzChat Vous souhaite une bonne journée.";
-$TXT_25= "pour réinitialiser votre mot de passe.";
-$TXT_26= "L'equipe ZzChat Vous souhaite une bonne journée.";
-$TXT_27= "Un EMail de récuperation vous a été envoyé.";
-$TXT_28= "Votre adresse mail ne correspond pas à votre nom d'utilisateur.";
-$TXT_29= "Votre nom d'utilisateur est inconnu, veuillez vous inscrire en <a href='./../index.php#logon'>cliquant ici</a>";
-$TXT_30= "Le lien est invalide.<br>";
-$TXT_31= "Le mot de passe et la confirmation ne correspondent pas.<br>";
-$TXT_32= "le nom d'utilisateur est déja utilisé, veuillez vous connectez ou en choisir un autre.";
-$TXT_33= "Personne n'est connecté!";
-$TXT_34= "Votre login est inconnu, inscrivez vous avant de chatter avec les autres ZZ";
-$TXT_35= "Votre mot de passe est incorrect, il vous reste ";
-$TXT_36= " tentatives";
+$TXT_19= "Recover your password ZzChat";
+$TXT_20= "Hello";
+$TXT_20= "You asked to recover your password to access to"; //mot suivant : zzchat ;)
+$TXT_21= "We have received your request and we are sending an Email with your new password. If you haven't asked for this request, please change your password directly on the website.";
+$TXT_22= "Click";
+$TXT_23= "In order to re init your password.";
+$TXT_24= "ZzChat team wish you a great day!";
+$TXT_25= " In order to re init your password.";
+$TXT_26= "ZzChat team wish you a great day!";
+$TXT_27= "A recover mail has been sent to you.";
+$TXT_28= "Your mail address doesn't match with your user name.";
+$TXT_29= "Your username is unknown, please sign up by <a href='./../index.php#logon'>clicking here</a>";
+$TXT_30= "The link isn't correct.<br>";$TXT_31= "The password and confirmation password don't match together.<br>";
+$TXT_32= "The user name already exist, please connect yourself or chose another one.";
+$TXT_33= "Nobody is connected!";$TXT_34= "Your username is unknown, sign up before accessing the chat";
+$TXT_35= "Your password is not correct, you still got";
+$TXT_36= " attempt";
 
 
 ?>
